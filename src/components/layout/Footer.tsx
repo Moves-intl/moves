@@ -1,5 +1,3 @@
-import React from "react";
-import { Link } from "react-router-dom";
 import {
   Phone,
   Mail,
@@ -7,34 +5,29 @@ import {
   Facebook,
   Instagram,
   Linkedin,
-  Twitter,
-  Clock,
-  Globe,
 } from "lucide-react";
+import { FaTiktok } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
-const Footer = () => {
+export default function Footer() {
   return (
     <footer className="bg-gradient-to-br from-primary via-primary to-primary/90 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-6">
-          {/* Company Info - Takes 2 columns on large screens */}
-          <div className="lg:col-span-2">
-            <div className="mb-6">
-              <img
-                src="/lovable-uploads/abcbb2a1-5db8-45ce-8215-42e053f17039.png"
-                alt="Moves International"
-                className="h-14 w-auto filter brightness-0 invert mb-4"
-              />
-              <h3 className="text-xl font-semibold mb-3">
-                Moves International
-              </h3>
-              <p className="text-gray-200 leading-relaxed mb-6 max-w-md">
-                Moves International is Australia's leading education and
-                migration services provider, empowering international students
-                to achieve their academic and career aspirations.
-              </p>
-            </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Company Info */}
+          <div>
+            <img
+              src="/lovable-uploads/abcbb2a1-5db8-45ce-8215-42e053f17039.png"
+              alt="Moves International"
+              className="h-14 w-auto filter brightness-0 invert mb-4"
+            />
+            <h3 className="text-xl font-semibold mb-3">Moves International</h3>
+            <p className="text-gray-200 leading-relaxed mb-6 max-w-md">
+              Moves International is Australia's leading education and migration
+              services provider, empowering international students to achieve
+              their academic and career aspirations.
+            </p>
 
             {/* Contact Info */}
             <div className="space-y-4">
@@ -56,8 +49,9 @@ const Footer = () => {
               <div className="flex items-start">
                 <MapPin className="h-5 w-5 mr-3 text-accent mt-1 flex-shrink-0" />
                 <span className="text-gray-200">
-                  D&C Building(Next to Himalayan Java) <br /> New Baneshwor,
-                  Kathmandu
+                  D&C Building (Next to Himalayan Java)
+                  <br />
+                  New Baneshwor, Kathmandu
                 </span>
               </div>
             </div>
@@ -117,7 +111,6 @@ const Footer = () => {
                   Study in UK
                 </Link>
               </li>
-              {/* <li><Link to="/destinations/usa" className="text-gray-200 hover:text-accent transition-colors hover:translate-x-1 transform duration-200 block">Study in USA</Link></li> */}
             </ul>
           </div>
 
@@ -177,87 +170,6 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-
-          {/* Company & Resources */}
-          <div>
-            <h3 className="text-lg font-semibold mb-6 text-accent">
-              Quick Links
-            </h3>
-            <ul className="space-y-3">
-              <li>
-                <Link
-                  to="/about"
-                  className="text-gray-200 hover:text-accent transition-colors hover:translate-x-1 transform duration-200 block"
-                >
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/blogs"
-                  className="text-gray-200 hover:text-accent transition-colors hover:translate-x-1 transform duration-200 block"
-                >
-                  Blog & Resources
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/contact"
-                  className="text-gray-200 hover:text-accent transition-colors hover:translate-x-1 transform duration-200 block"
-                >
-                  Contact Us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/auth"
-                  className="text-gray-200 hover:text-accent transition-colors hover:translate-x-1 transform duration-200 block"
-                >
-                  Student Login
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/student-dashboard/home"
-                  className="text-gray-200 hover:text-accent transition-colors hover:translate-x-1 transform duration-200 block"
-                >
-                  Student Portal
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/careers"
-                  className="text-gray-200 hover:text-accent transition-colors hover:translate-x-1 transform duration-200 block"
-                >
-                  Careers
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/reviews"
-                  className="text-gray-200 hover:text-accent transition-colors hover:translate-x-1 transform duration-200 block"
-                >
-                  Success Stories
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/scholarships"
-                  className="text-gray-200 hover:text-accent transition-colors hover:translate-x-1 transform duration-200 block"
-                >
-                  Scholarships
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/events"
-                  className="text-gray-200 hover:text-accent transition-colors hover:translate-x-1 transform duration-200 block"
-                >
-                  Events
-                </Link>
-              </li>
-            </ul>
-          </div>
         </div>
 
         {/* Social Media & Newsletter Section */}
@@ -270,28 +182,32 @@ const Footer = () => {
                 </h4>
                 <div className="flex space-x-4 justify-center sm:justify-start">
                   <a
-                    href="#"
+                    href="https://www.facebook.com/MovesInternationalNepal"
+                    target="_blank"
                     className="bg-accent/20 p-3 rounded-full hover:bg-accent hover:scale-110 transition-all duration-200"
                   >
                     <Facebook className="h-5 w-5" />
                   </a>
                   <a
-                    href="#"
+                    href="https://www.instagram.com/movesnepal/"
+                    target="_blank"
                     className="bg-accent/20 p-3 rounded-full hover:bg-accent hover:scale-110 transition-all duration-200"
                   >
                     <Instagram className="h-5 w-5" />
                   </a>
                   <a
-                    href="#"
+                    href="https://www.linkedin.com/in/moves-international-nepal-a036a7376/"
+                    target="_blank"
                     className="bg-accent/20 p-3 rounded-full hover:bg-accent hover:scale-110 transition-all duration-200"
                   >
                     <Linkedin className="h-5 w-5" />
                   </a>
                   <a
-                    href="#"
+                    href="https://www.tiktok.com/@movesnepal"
+                    target="_blank"
                     className="bg-accent/20 p-3 rounded-full hover:bg-accent hover:scale-110 transition-all duration-200"
                   >
-                    <Twitter className="h-5 w-5" />
+                    <FaTiktok className="h-5 w-5" />
                   </a>
                 </div>
               </div>
@@ -351,6 +267,4 @@ const Footer = () => {
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}

@@ -1,13 +1,13 @@
 import React from "react";
-import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { Phone, Mail, User } from "lucide-react";
+import countryData from "country-telephone-data";
 
 interface PersonalInfoSectionProps {
   formData: {
     student_name: string;
     student_email: string;
     student_phone: string;
+    country_code?: string;
   };
   onInputChange: (field: string, value: string) => void;
 }
@@ -18,6 +18,7 @@ export const PersonalInfoSection: React.FC<PersonalInfoSectionProps> = ({
 }) => {
   return (
     <>
+      {/* Name Fields */}
       <div className="grid md:grid-cols-2 gap-3">
         <div className="space-y-1.5">
           <Input
@@ -56,8 +57,10 @@ export const PersonalInfoSection: React.FC<PersonalInfoSectionProps> = ({
         </div>
       </div>
 
-      <div className="flex items-center gap-2 w-full">
-        <div className="space-y-1.5 basis-[49%] mr-1">
+      {/* Email and Phone */}
+      <div className="flex flex-col md:flex-row gap-3 mt-3">
+        {/* Email */}
+        <div className="flex-1 space-y-1.5">
           <Input
             id="student_email"
             type="email"
@@ -69,25 +72,28 @@ export const PersonalInfoSection: React.FC<PersonalInfoSectionProps> = ({
           />
         </div>
 
-        <div className="space-y-1.5 flex-1">
-          <div className="flex gap-2">
-            <div className="w-20">
-              <Input
-                value="+880"
-                readOnly
-                className="h-10 border-gray-200 bg-gray-50 text-center rounded-lg font-medium text-xs"
-              />
-            </div>
-            <Input
-              id="student_phone"
-              type="tel"
-              value={formData.student_phone}
-              onChange={(e) => onInputChange("student_phone", e.target.value)}
-              required
-              className="h-10 border-gray-200 focus:border-primary focus:ring-primary rounded-lg flex-1"
-              placeholder="Mobile number *"
-            />
-          </div>
+        {/* Phone with country code */}
+        <div className="flex gap-2 w-full md:w-auto">
+          <select
+            value={formData.country_code}
+            onChange={(e) => onInputChange("country_code", e.target.value)}
+            className="h-10 w-10 border-gray-200 bg-gray-50 rounded-lg text-sm font-medium px-2"
+          >
+            {countryData.allCountries.map((country) => (
+              <option key={country.iso2} value={`+${country.dialCode}`}>
+                {country.name} (+{country.dialCode})
+              </option>
+            ))}
+          </select>
+          <Input
+            id="student_phone"
+            type="tel"
+            value={formData.student_phone}
+            onChange={(e) => onInputChange("student_phone", e.target.value)}
+            required
+            className="h-10 border-gray-200 focus:border-primary focus:ring-primary rounded-lg flex-1"
+            placeholder="Mobile number *"
+          />
         </div>
       </div>
     </>

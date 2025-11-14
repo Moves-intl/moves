@@ -98,7 +98,7 @@ export const StudyPreferencesSection: React.FC<
               <SelectValue placeholder="Nearest Moves International Office *" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="Sydney">Dhaka Office</SelectItem>
+              <SelectItem value="Sydney">Nepal Office</SelectItem>
               <SelectItem value="Online">Online</SelectItem>
             </SelectContent>
           </Select>

@@ -26,17 +26,17 @@ const LeadEnquiryForm = () => {
     const fetchServices = async () => {
       try {
         const { data, error } = await supabase
-          .from('services')
-          .select('id, title, icon_url,slug')
+          .from("services")
+          .select("id, title, icon_url,slug")
           .limit(5);
 
         if (error) {
-          console.error('Error fetching services:', error);
+          console.error("Error fetching services:", error);
         } else {
           setServices(data || []);
         }
       } catch (error) {
-        console.error('Error:', error);
+        console.error("Error:", error);
       } finally {
         setIsLoading(false);
       }
@@ -54,9 +54,8 @@ const LeadEnquiryForm = () => {
           <div>
             <h2 className="text-3xl lg:text-4xl font-bold text-primary">
               Moves International can help you
-              
             </h2>
-            <p className="text-gray-600 mt-2">
+            <p className="text-gray-600 mt-2" id="lead_form">
               Enter your details and one of our expert counsellors will reach
               out to you so we can connect you to the right course, country,
               university — and even scholarships!
@@ -176,43 +175,44 @@ const LeadEnquiryForm = () => {
 
         {/* Right Column */}
         <div className="flex flex-col space-y-6">
-          {isLoading ? (
-            // Loading skeleton
-            [...Array(5)].map((_, idx) => (
-              <div
-                key={idx}
-                className="shadow-[0_1.5px_3px_rgba(0,0,0,0.1)] rounded-md overflow-hidden animate-pulse"
-              >
-                <div className="w-full h-48 bg-gray-300 rounded-t-xl"></div>
-                <div className="flex items-center justify-between p-5 bg-white">
-                  <div className="h-4 bg-gray-300 rounded w-3/4"></div>
-                  <ChevronRight className="text-gray-300 " />
+          {isLoading
+            ? // Loading skeleton
+              [...Array(5)].map((_, idx) => (
+                <div
+                  key={idx}
+                  className="shadow-[0_1.5px_3px_rgba(0,0,0,0.1)] rounded-md overflow-hidden animate-pulse"
+                >
+                  <div className="w-full h-48 bg-gray-300 rounded-t-xl"></div>
+                  <div className="flex items-center justify-between p-5 bg-white">
+                    <div className="h-4 bg-gray-300 rounded w-3/4"></div>
+                    <ChevronRight className="text-gray-300 " />
+                  </div>
                 </div>
-              </div>
-            ))
-          ) : (
-            // Actual services data
-            services.map((service) => (
-              <div
-                key={service.id}
-                className="shadow-[0_1.5px_3px_rgba(0,0,0,0.1)] rounded-md overflow-hidden"
-              >
-                <a href={`/services/${service.slug}`}>
-                <img
-                  src={service.icon_url}
-                  alt={service.title}
-                  className="rounded-t-xl shadow-xl w-full object-cover"
-                  />
-                <div className="flex items-center font-bold justify-between p-5 bg-white">
-                  <p>{service.title}</p>
-                <a href={`/services/${service.slug}`} className="hover:cursor-pointer">
-                  <ChevronRight />
-                </a>
-                </div>
+              ))
+            : // Actual services data
+              services.map((service) => (
+                <div
+                  key={service.id}
+                  className="shadow-[0_1.5px_3px_rgba(0,0,0,0.1)] rounded-md overflow-hidden"
+                >
+                  <a href={`/services/${service.slug}`}>
+                    <img
+                      src={service.icon_url}
+                      alt={service.title}
+                      className="rounded-t-xl shadow-xl w-full object-cover"
+                    />
+                    <div className="flex items-center font-bold justify-between p-5 bg-white">
+                      <p>{service.title}</p>
+                      <a
+                        href={`/services/${service.slug}`}
+                        className="hover:cursor-pointer"
+                      >
+                        <ChevronRight />
+                      </a>
+                    </div>
                   </a>
-              </div>
-            ))
-          )}
+                </div>
+              ))}
         </div>
       </div>
     </section>

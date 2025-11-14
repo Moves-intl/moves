@@ -51,9 +51,6 @@ export const SchedulingSection: React.FC<SchedulingSectionProps> = ({
             <SelectItem value="Afternoon (12 PM - 5 PM)">
               Afternoon (12 PM - 5 PM)
             </SelectItem>
-            <SelectItem value="Evening (5 PM - 8 PM)">
-              Evening (5 PM - 8 PM)
-            </SelectItem>
           </SelectContent>
         </Select>
       </div>
