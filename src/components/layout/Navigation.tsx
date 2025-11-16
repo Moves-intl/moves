@@ -97,12 +97,12 @@ const Navigation = () => {
       submenu: [
         {
           name: "Sydney Office",
-          path: "https://www.mieducation.com.au",
+          path: "https://movesinternational.com.au/",
           external: true,
         },
         {
           name: "Wollongong Office",
-          path: "https://www.mieducation.com.au",
+          path: "https://movesinternational.com.au/",
           external: true,
         },
         {

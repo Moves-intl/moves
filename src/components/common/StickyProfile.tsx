@@ -12,7 +12,7 @@ export default function StickyProfileComponent() {
             {/* Profile Image */}
             <div className="w-[80px] h-[80px] rounded-full overflow-hidden bg-gray-300">
               <img
-                src="https://movesinternational.com.np/team/Sudan_Bhattarai.png"
+                src="/team/Sudan_Bhattarai.png"
                 alt="Profile"
                 className="w-full h-full object-cover"
               />
