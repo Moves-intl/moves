@@ -30,7 +30,7 @@ export default function StickyProfileComponent() {
           {/* Right side - Phone button */}
           <button className="flex items-center space-x-1 md:space-x-2 bg-orange-100 hover:bg-orange-200 text-orange-600 px-4 py-2 rounded-lg transition-colors">
             <Phone size={18} />
-            <span className="font-medium">+880 133 879 4188</span>
+            <span className="font-medium">+977 9768991102</span>
           </button>
         </div>
       </div>

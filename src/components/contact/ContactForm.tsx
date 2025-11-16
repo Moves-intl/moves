@@ -291,7 +291,7 @@ const ContactForm = () => {
           </Label>
           <Input
             id="phone"
-            placeholder="+977 xxx xxx xxx / +880 xxx xxx xxx"
+            placeholder="+977 xxx xxx xxx / +977 xxx xxx xxx"
             {...register("phone")}
             className="focus:ring-2 focus:ring-primary/20 focus:border-primary border-gray-300"
           />
