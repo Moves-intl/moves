@@ -77,11 +77,11 @@ export const PersonalInfoSection: React.FC<PersonalInfoSectionProps> = ({
           <select
             value={formData.country_code}
             onChange={(e) => onInputChange("country_code", e.target.value)}
-            className="h-10 w-20 border-gray-200 bg-gray-50 rounded-lg text-sm font-medium px-2"
+            className="h-10 w-16 border-gray-200 bg-gray-50 rounded-lg text-sm font-medium px-2"
           >
             {countryData.allCountries.map((country) => (
               <option key={country.iso2} value={`+${country.dialCode}`}>
-                {country.name} (+{country.dialCode})
+                +{country.dialCode}
               </option>
             ))}
           </select>
