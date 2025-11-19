@@ -30,14 +30,14 @@ export function HamburgerMenu() {
         </Button>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent className="bg-gray-900 border-none w-56 p-2">
+      <DropdownMenuContent className="bg-white border border-gray-200 w-56 p-2">
         {links.map((link) => (
           <DropdownMenuItem key={link.href} asChild>
             <Link
               to={link.href}
-              className="text-gray-200 hover:text-accent transition-colors block"
+              className="text-gray-800 hover:text-primary transition-colors block font-montserrat"
             >
-              {link.name}
+              <span className="text-[#023047]">{link.name}</span>
             </Link>
           </DropdownMenuItem>
         ))}

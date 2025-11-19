@@ -1,18 +1,24 @@
-import React, { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { Link } from 'react-router-dom';
-import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Separator } from '@/components/ui/separator';
-import { 
-  Calendar, 
-  User, 
-  Search, 
-  BookOpen, 
-  ArrowRight, 
+import React, { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { Link } from "react-router-dom";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Separator } from "@/components/ui/separator";
+import {
+  Calendar,
+  User,
+  Search,
+  BookOpen,
+  ArrowRight,
   Clock,
   TrendingUp,
   Grid3X3,
@@ -23,61 +29,70 @@ import {
   Quote,
   Eye,
   MessageCircle,
-  Share2
-} from 'lucide-react';
-import { supabase } from '@/integrations/supabase/client';
+  Share2,
+} from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 const Blogs = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('all');
-  const [viewMode, setViewMode] = useState<'magazine' | 'grid' | 'list'>('magazine');
-  const [sortBy, setSortBy] = useState<'newest' | 'popular' | 'trending'>('newest');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [viewMode, setViewMode] = useState<"magazine" | "grid" | "list">(
+    "magazine"
+  );
+  const [sortBy, setSortBy] = useState<"newest" | "popular" | "trending">(
+    "newest"
+  );
 
   // Optimized single query to fetch all necessary data
   const { data: blogsData, isLoading: blogsLoading } = useQuery({
-    queryKey: ['blogs-data', selectedCategory, sortBy],
+    queryKey: ["blogs-data", selectedCategory, sortBy],
     queryFn: async () => {
       // Fetch categories first
       const { data: categories, error: categoriesError } = await supabase
-        .from('blog_categories')
-        .select('*')
-        .order('name');
-      
+        .from("blog_categories")
+        .select("*")
+        .order("name");
+
       if (categoriesError) throw categoriesError;
 
       // Build blogs query with optimizations
       let blogsQuery = supabase
-        .from('blogs')
-        .select(`
+        .from("blogs")
+        .select(
+          `
           id, title, slug, content, featured_image_url, featured_image_alt,
           author, created_at, tags,
           blog_category_assignments(
             blog_categories(name, id)
           )
-        `)
-        .eq('published', true);
+        `
+        )
+        .eq("published", true);
 
       // Apply category filter at database level if specific category selected
-      if (selectedCategory !== 'all') {
-        blogsQuery = blogsQuery.eq('blog_category_assignments.blog_categories.name', selectedCategory);
+      if (selectedCategory !== "all") {
+        blogsQuery = blogsQuery.eq(
+          "blog_category_assignments.blog_categories.name",
+          selectedCategory
+        );
       }
 
       // Apply sorting at database level
-      if (sortBy === 'newest') {
-        blogsQuery = blogsQuery.order('created_at', { ascending: false });
+      if (sortBy === "newest") {
+        blogsQuery = blogsQuery.order("created_at", { ascending: false });
       }
 
       // Limit initial load for performance
       blogsQuery = blogsQuery.limit(50);
 
       const { data: blogs, error: blogsError, count } = await blogsQuery;
-      
+
       if (blogsError) throw blogsError;
 
       return {
         blogs: blogs || [],
         categories: categories || [],
-        total: count || 0
+        total: count || 0,
       };
     },
     staleTime: 5 * 60 * 1000, // Cache for 5 minutes
@@ -90,32 +105,34 @@ const Blogs = () => {
   // Optimized filtering - only search filter applied client-side
   const processedBlogs = React.useMemo(() => {
     if (!searchTerm.trim()) return blogs;
-    
-    return blogs.filter(blog => {
+
+    return blogs.filter((blog) => {
       // Only search in title and author for performance
-      return blog.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-             blog.author?.toLowerCase().includes(searchTerm.toLowerCase());
+      return (
+        blog.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        blog.author?.toLowerCase().includes(searchTerm.toLowerCase())
+      );
     });
   }, [blogs, searchTerm]);
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
+    return new Date(dateString).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
     });
   };
 
   const truncateContent = (content: string, maxLength: number = 150) => {
-    if (!content) return '';
-    const text = content.replace(/<[^>]*>/g, '');
+    if (!content) return "";
+    const text = content.replace(/<[^>]*>/g, "");
     if (text.length <= maxLength) return text;
-    return text.substring(0, maxLength).trim() + '...';
+    return text.substring(0, maxLength).trim() + "...";
   };
 
   const getReadingTime = (content: string) => {
     if (!content) return 0;
-    const words = content.split(' ').length;
+    const words = content.split(" ").length;
     return Math.ceil(words / 200);
   };
 
@@ -124,28 +141,43 @@ const Blogs = () => {
   const featuredArticles = processedBlogs.slice(1, 5);
   const regularArticles = processedBlogs.slice(5);
 
-  const MagazineCard = ({ blog, size = 'regular', className = '' }: { 
-    blog: any; 
-    size?: 'hero' | 'featured' | 'regular' | 'small';
+  const MagazineCard = ({
+    blog,
+    size = "regular",
+    className = "",
+  }: {
+    blog: any;
+    size?: "hero" | "featured" | "regular" | "small";
     className?: string;
   }) => {
-    const categories = blog.blog_category_assignments?.map((assignment: any) => assignment.blog_categories) || [];
-    
+    const categories =
+      blog.blog_category_assignments?.map(
+        (assignment: any) => assignment.blog_categories
+      ) || [];
+
     return (
-      <Card className={`group overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 bg-card ${className}`}>
+      <Card
+        className={`group overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 bg-card ${className}`}
+      >
         {blog.featured_image_url && (
-          <div className={`relative overflow-hidden ${
-            size === 'hero' ? 'h-80 lg:h-96' :
-            size === 'featured' ? 'h-64' :
-            size === 'small' ? 'h-40' : 'h-56'
-          }`}>
-            <img 
-              src={blog.featured_image_url} 
+          <div
+            className={`relative overflow-hidden ${
+              size === "hero"
+                ? "h-80 lg:h-96"
+                : size === "featured"
+                ? "h-64"
+                : size === "small"
+                ? "h-40"
+                : "h-56"
+            }`}
+          >
+            <img
+              src={blog.featured_image_url}
               alt={blog.featured_image_alt || blog.title}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-            
+
             {/* Category Badge */}
             {categories.length > 0 && (
               <div className="absolute top-4 left-4">
@@ -156,9 +188,12 @@ const Blogs = () => {
             )}
 
             {/* Featured Badge */}
-            {size === 'hero' && (
+            {size === "hero" && (
               <div className="absolute top-4 right-4">
-                <Badge variant="secondary" className="bg-yellow-500 text-yellow-900 font-bold">
+                <Badge
+                  variant="secondary"
+                  className="bg-yellow-500 text-yellow-900 font-bold"
+                >
                   <Star className="w-3 h-3 mr-1" />
                   Featured
                 </Badge>
@@ -166,7 +201,7 @@ const Blogs = () => {
             )}
 
             {/* Overlay Content for Hero */}
-            {size === 'hero' && (
+            {size === "hero" && (
               <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
                 <div className="flex items-center gap-4 text-sm mb-4 opacity-90">
                   {blog.author && (
@@ -181,21 +216,25 @@ const Blogs = () => {
                   </div>
                   <div className="flex items-center gap-2">
                     <Clock className="h-4 w-4" />
-                    <span>{getReadingTime(blog.content || '')} min read</span>
+                    <span>{getReadingTime(blog.content || "")} min read</span>
                   </div>
                 </div>
-                
+
                 <h2 className="text-3xl lg:text-4xl font-bold mb-4 leading-tight">
                   {blog.title}
                 </h2>
-                
+
                 {blog.content && (
                   <p className="text-lg text-white/90 mb-6 line-clamp-2">
                     {truncateContent(blog.content, 200)}
                   </p>
                 )}
-                
-                <Button size="lg" className="bg-white text-black hover:bg-white/90" asChild>
+
+                <Button
+                  size="lg"
+                  className="bg-white text-black hover:bg-white/90"
+                  asChild
+                >
                   <Link to={`/blogs/${blog.slug || blog.id}`}>
                     Read Full Story
                     <ArrowRight className="ml-2 h-4 w-4" />
@@ -205,9 +244,9 @@ const Blogs = () => {
             )}
           </div>
         )}
-        
-        {size !== 'hero' && (
-          <CardContent className={`${size === 'small' ? 'p-4' : 'p-6'}`}>
+
+        {size !== "hero" && (
+          <CardContent className={`${size === "small" ? "p-4" : "p-6"}`}>
             {/* Meta Info */}
             <div className="flex items-center gap-3 text-xs text-muted-foreground mb-3">
               {blog.author && (
@@ -222,28 +261,33 @@ const Blogs = () => {
               </div>
               <div className="flex items-center gap-1">
                 <Clock className="h-3 w-3" />
-                <span>{getReadingTime(blog.content || '')} min</span>
+                <span>{getReadingTime(blog.content || "")} min</span>
               </div>
             </div>
-            
+
             {/* Title */}
-            <h3 className={`font-bold mb-3 group-hover:text-primary transition-colors line-clamp-2 ${
-              size === 'featured' ? 'text-xl' : 
-              size === 'small' ? 'text-base' : 'text-lg'
-            }`}>
+            <h3
+              className={`font-bold mb-3 group-hover:text-primary transition-colors line-clamp-2 ${
+                size === "featured"
+                  ? "text-xl"
+                  : size === "small"
+                  ? "text-base"
+                  : "text-lg"
+              }`}
+            >
               {blog.title}
             </h3>
-            
+
             {/* Content Preview */}
-            {blog.content && size !== 'small' && (
+            {blog.content && size !== "small" && (
               <p className="text-muted-foreground text-sm leading-relaxed mb-4 line-clamp-3">
-                {truncateContent(blog.content, size === 'featured' ? 120 : 100)}
+                {truncateContent(blog.content, size === "featured" ? 120 : 100)}
               </p>
             )}
-            
+
             {/* Footer */}
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3 text-xs text-muted-foreground">
+              {/* <div className="flex items-center gap-3 text-xs text-muted-foreground">
                 <div className="flex items-center gap-1">
                   <Eye className="h-3 w-3" />
                   <span>{Math.floor(Math.random() * 1000) + 100}</span>
@@ -252,12 +296,12 @@ const Blogs = () => {
                   <MessageCircle className="h-3 w-3" />
                   <span>{Math.floor(Math.random() * 50) + 5}</span>
                 </div>
-              </div>
-              
-              <Button 
-                variant="ghost" 
+              </div> */}
+
+              <Button
+                variant="ghost"
                 size="sm"
-                className="group-hover:text-primary group-hover:translate-x-1 transition-all p-0 h-auto font-semibold text-xs" 
+                className="group-hover:text-primary group-hover:translate-x-1 transition-all p-0 h-auto font-semibold text-xs"
                 asChild
               >
                 <Link to={`/blogs/${blog.slug || blog.id}`}>
@@ -278,22 +322,29 @@ const Blogs = () => {
       <section className="relative overflow-hidden bg-gradient-to-br from-background via-primary/5 to-accent/10">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }}></div>
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+            }}
+          ></div>
         </div>
-        
+
         <div className="container mx-auto px-4 py-12 lg:py-16 relative">
           <div className="max-w-5xl mx-auto">
             {/* Top Badge */}
             <div className="text-center mb-8">
               <div className="inline-flex items-center gap-3 bg-card/80 backdrop-blur-sm rounded-full px-6 py-3 border border-border/50 shadow-lg">
                 <Quote className="h-5 w-5 text-primary" />
-                <span className="text-sm font-semibold text-primary uppercase tracking-wider">The Chronicle</span>
+                <span className="text-sm font-semibold text-primary uppercase tracking-wider">
+                  The Chronicle
+                </span>
                 <Separator orientation="vertical" className="h-4" />
                 <div className="flex items-center gap-2 text-xs text-muted-foreground">
                   <BookOpen className="h-4 w-4" />
-                  <span>{blogStats ? `${blogStats}+ Stories` : 'Loading...'}</span>
+                  <span>
+                    {blogStats ? `${blogStats}+ Stories` : "Loading..."}
+                  </span>
                 </div>
               </div>
             </div>
@@ -303,14 +354,17 @@ const Blogs = () => {
               <h1 className="text-6xl lg:text-7xl xl:text-8xl font-bold leading-none">
                 <span className="text-foreground">Stories </span>
                 <span className="text-transparent bg-gradient-to-r from-primary via-accent to-primary bg-clip-text animate-pulse">
-                  Worth 
+                  Worth
                 </span>
-                <span className="text-foreground italic font-serif">Reading</span>
+                <span className="text-foreground italic font-serif">
+                  Reading
+                </span>
               </h1>
-              
+
               <p className="text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                A curated collection of insights, expert perspectives, and compelling narratives 
-                that inform, inspire, and ignite curiosity.
+                A curated collection of insights, expert perspectives, and
+                compelling narratives that inform, inspire, and ignite
+                curiosity.
               </p>
             </div>
 
@@ -328,9 +382,13 @@ const Blogs = () => {
                   />
                   <div className="absolute right-6 top-1/2 transform -translate-y-1/2">
                     <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                      <kbd className="px-2 py-1 bg-muted/80 rounded text-xs">⌘</kbd>
+                      <kbd className="px-2 py-1 bg-muted/80 rounded text-xs">
+                        ⌘
+                      </kbd>
                       <span>+</span>
-                      <kbd className="px-2 py-1 bg-muted/80 rounded text-xs">K</kbd>
+                      <kbd className="px-2 py-1 bg-muted/80 rounded text-xs">
+                        K
+                      </kbd>
                     </div>
                   </div>
                 </div>
@@ -340,16 +398,23 @@ const Blogs = () => {
             {/* Quick Stats */}
             <div className="flex flex-wrap justify-center gap-8 text-center">
               <div className="bg-card/50 backdrop-blur-sm rounded-xl px-6 py-4 border border-border/50">
-                <div className="text-2xl font-bold text-primary">{processedBlogs.length}</div>
+                <div className="text-2xl font-bold text-primary">
+                  {processedBlogs.length}
+                </div>
                 <div className="text-sm text-muted-foreground">Articles</div>
               </div>
               <div className="bg-card/50 backdrop-blur-sm rounded-xl px-6 py-4 border border-border/50">
-                <div className="text-2xl font-bold text-primary">{categories?.length || 0}</div>
+                <div className="text-2xl font-bold text-primary">
+                  {categories?.length || 0}
+                </div>
                 <div className="text-sm text-muted-foreground">Categories</div>
               </div>
               <div className="bg-card/50 backdrop-blur-sm rounded-xl px-6 py-4 border border-border/50">
                 <div className="text-2xl font-bold text-primary">
-                  {processedBlogs.reduce((total, blog) => total + getReadingTime(blog.content || ''), 0)}
+                  {processedBlogs.reduce(
+                    (total, blog) => total + getReadingTime(blog.content || ""),
+                    0
+                  )}
                 </div>
                 <div className="text-sm text-muted-foreground">Min Read</div>
               </div>
@@ -371,8 +436,11 @@ const Blogs = () => {
                 <Filter className="h-4 w-4 text-primary" />
                 <span className="font-semibold">Filter</span>
               </div>
-              
-              <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+
+              <Select
+                value={selectedCategory}
+                onValueChange={setSelectedCategory}
+              >
                 <SelectTrigger className="w-48">
                   <SelectValue placeholder="Category" />
                 </SelectTrigger>
@@ -385,8 +453,11 @@ const Blogs = () => {
                   ))}
                 </SelectContent>
               </Select>
-              
-              <Select value={sortBy} onValueChange={(value: any) => setSortBy(value)}>
+
+              <Select
+                value={sortBy}
+                onValueChange={(value: any) => setSortBy(value)}
+              >
                 <SelectTrigger className="w-40">
                   <SelectValue />
                 </SelectTrigger>
@@ -397,38 +468,40 @@ const Blogs = () => {
                 </SelectContent>
               </Select>
             </div>
-            
+
             <div className="flex items-center gap-2">
               <span className="text-sm text-muted-foreground mr-2">View:</span>
               <div className="flex bg-muted rounded-lg p-1">
                 <Button
-                  variant={viewMode === 'magazine' ? 'default' : 'ghost'}
+                  variant={viewMode === "magazine" ? "default" : "ghost"}
                   size="sm"
-                  onClick={() => setViewMode('magazine')}
+                  onClick={() => setViewMode("magazine")}
                   className="h-8 px-3 text-xs"
                 >
                   Magazine
                 </Button>
                 <Button
-                  variant={viewMode === 'grid' ? 'default' : 'ghost'}
+                  variant={viewMode === "grid" ? "default" : "ghost"}
                   size="sm"
-                  onClick={() => setViewMode('grid')}
+                  onClick={() => setViewMode("grid")}
                   className="h-8 px-3"
                 >
                   <Grid3X3 className="h-4 w-4" />
                 </Button>
                 <Button
-                  variant={viewMode === 'list' ? 'default' : 'ghost'}
+                  variant={viewMode === "list" ? "default" : "ghost"}
                   size="sm"
-                  onClick={() => setViewMode('list')}
+                  onClick={() => setViewMode("list")}
                   className="h-8 px-3"
                 >
                   <List className="h-4 w-4" />
                 </Button>
               </div>
-              
+
               <Badge variant="outline" className="ml-4">
-                {blogsLoading ? 'Loading...' : `${processedBlogs.length} stories`}
+                {blogsLoading
+                  ? "Loading..."
+                  : `${processedBlogs.length} stories`}
               </Badge>
             </div>
           </div>
@@ -459,14 +532,19 @@ const Blogs = () => {
             <p className="text-muted-foreground mb-8">
               Try adjusting your search or explore all categories
             </p>
-            <Button onClick={() => { setSearchTerm(''); setSelectedCategory('all'); }}>
+            <Button
+              onClick={() => {
+                setSearchTerm("");
+                setSelectedCategory("all");
+              }}
+            >
               View All Stories
             </Button>
           </div>
         ) : (
           <>
             {/* Magazine Layout */}
-            {viewMode === 'magazine' && (
+            {viewMode === "magazine" && (
               <div className="space-y-12">
                 {/* Hero Article */}
                 {heroArticle && (
@@ -483,14 +561,16 @@ const Blogs = () => {
                       <h2 className="text-2xl font-bold">Featured Stories</h2>
                       <Separator className="flex-1" />
                     </div>
-                    
+
                     <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
                       {featuredArticles.map((blog, index) => (
-                        <MagazineCard 
-                          key={blog.id} 
-                          blog={blog} 
-                          size={index < 2 ? 'featured' : 'regular'}
-                          className={index < 2 ? 'md:col-span-1 lg:col-span-2' : ''}
+                        <MagazineCard
+                          key={blog.id}
+                          blog={blog}
+                          size={index < 2 ? "featured" : "regular"}
+                          className={
+                            index < 2 ? "md:col-span-1 lg:col-span-2" : ""
+                          }
                         />
                       ))}
                     </div>
@@ -505,14 +585,20 @@ const Blogs = () => {
                       <h2 className="text-2xl font-bold">More Stories</h2>
                       <Separator className="flex-1" />
                     </div>
-                    
+
                     <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                       {regularArticles.map((blog, index) => (
-                        <MagazineCard 
-                          key={blog.id} 
-                          blog={blog} 
-                          size={index % 7 === 0 ? 'featured' : index % 5 === 0 ? 'regular' : 'small'}
-                          className={index % 7 === 0 ? 'md:col-span-2' : ''}
+                        <MagazineCard
+                          key={blog.id}
+                          blog={blog}
+                          size={
+                            index % 7 === 0
+                              ? "featured"
+                              : index % 5 === 0
+                              ? "regular"
+                              : "small"
+                          }
+                          className={index % 7 === 0 ? "md:col-span-2" : ""}
                         />
                       ))}
                     </div>
@@ -522,7 +608,7 @@ const Blogs = () => {
             )}
 
             {/* Grid Layout */}
-            {viewMode === 'grid' && (
+            {viewMode === "grid" && (
               <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 {processedBlogs.map((blog) => (
                   <MagazineCard key={blog.id} blog={blog} size="regular" />
@@ -531,12 +617,12 @@ const Blogs = () => {
             )}
 
             {/* List Layout */}
-            {viewMode === 'list' && (
+            {viewMode === "list" && (
               <div className="max-w-4xl mx-auto space-y-8">
                 {processedBlogs.map((blog) => (
-                  <MagazineCard 
-                    key={blog.id} 
-                    blog={blog} 
+                  <MagazineCard
+                    key={blog.id}
+                    blog={blog}
                     size="regular"
                     className="flex flex-row"
                   />
@@ -552,20 +638,13 @@ const Blogs = () => {
         <div className="container mx-auto px-4 py-16">
           <div className="max-w-2xl mx-auto text-center">
             <TrendingUp className="h-12 w-12 text-primary mx-auto mb-6" />
-            <h2 className="text-3xl font-bold mb-4">
-              Never Miss a Story
-            </h2>
+            <h2 className="text-3xl font-bold mb-4">Never Miss a Story</h2>
             <p className="text-lg text-muted-foreground mb-8">
               Get our best stories delivered to your inbox weekly
             </p>
             <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-              <Input 
-                placeholder="Your email address" 
-                className="flex-1"
-              />
-              <Button size="lg">
-                Subscribe
-              </Button>
+              <Input placeholder="Your email address" className="flex-1" />
+              <Button size="lg">Subscribe</Button>
             </div>
           </div>
         </div>
