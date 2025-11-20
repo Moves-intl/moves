@@ -32,12 +32,29 @@ export function HamburgerMenu() {
 
       <DropdownMenuContent className="bg-white border border-gray-200 w-56 p-2">
         {links.map((link) => (
-          <DropdownMenuItem key={link.href} asChild>
+          <DropdownMenuItem
+            key={link.href}
+            asChild
+            // 1. Ensure focus/hover background is truly transparent
+            className="p-0 focus:bg-transparent hover:bg-transparent relative group"
+          >
             <Link
               to={link.href}
-              className="text-gray-800 hover:text-primary transition-colors block font-montserrat"
+              className="flex items-center w-full py-2 px-2 font-montserrat text-gray-800 text-sm hover:text-gray-900 cursor-pointer"
             >
-              <span className="text-[#023047]">{link.name}</span>
+              {/* Horizontal line with transition for smooth animation */}
+              <span
+                className="
+                  block h-[1px] bg-black 
+                  w-0 group-hover:w-4 
+                  opacity-0 group-hover:opacity-100 
+                  mr-0 group-hover:mr-2 
+                  transition-all duration-300 ease-in-out
+                "
+              ></span>
+              <span className="text-black hover:text-gray-600">
+                {link.name}
+              </span>
             </Link>
           </DropdownMenuItem>
         ))}

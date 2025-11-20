@@ -301,7 +301,7 @@ const Blogs = () => {
               <Button
                 variant="ghost"
                 size="sm"
-                className="group-hover:text-primary group-hover:translate-x-1 transition-all p-0 h-auto font-semibold text-xs"
+                className="font-group-hover:text-primary group-hover:translate-x-1 transition-all h-auto font-semibold text-xs py-2 px-4 duration-300"
                 asChild
               >
                 <Link to={`/blogs/${blog.slug || blog.id}`}>
