@@ -1,14 +1,31 @@
-import React, { useState } from 'react';
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { supabase } from '@/integrations/supabase/client';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Badge } from '@/components/ui/badge';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { UserPlus, Edit, Trash2, Mail, Phone, Linkedin, Twitter, Facebook, Eye } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
-import StaffForm, { StaffFormData } from './StaffForm';
+import React, { useState } from "react";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  UserPlus,
+  Edit,
+  Trash2,
+  Mail,
+  Phone,
+  Linkedin,
+  Twitter,
+  Facebook,
+  Eye,
+} from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import StaffForm, { StaffFormData } from "./StaffForm";
 
 interface StaffMember {
   id: string;
@@ -36,12 +53,12 @@ const StaffManagement = () => {
 
   // Fetch staff members
   const { data: staffMembers, isLoading } = useQuery({
-    queryKey: ['staff-members'],
+    queryKey: ["staff-members"],
     queryFn: async () => {
       const { data, error } = await supabase
-        .from('staff_members')
-        .select('*')
-        .order('display_order', { ascending: true });
+        .from("staff_members")
+        .select("*")
+        .order("display_order", { ascending: true });
       if (error) throw error;
       return data as StaffMember[];
     },
@@ -68,24 +85,22 @@ const StaffManagement = () => {
         social_media_links,
       };
 
-      const { error } = await supabase
-        .from('staff_members')
-        .insert(insertData);
+      const { error } = await supabase.from("staff_members").insert(insertData);
       if (error) throw error;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['staff-members'] });
+      queryClient.invalidateQueries({ queryKey: ["staff-members"] });
       toast({
-        title: 'Success',
-        description: 'Staff member added successfully',
+        title: "Success",
+        description: "Staff member added successfully",
       });
       setIsFormOpen(false);
     },
     onError: () => {
       toast({
-        title: 'Error',
-        description: 'Failed to add staff member',
-        variant: 'destructive',
+        title: "Error",
+        description: "Failed to add staff member",
+        variant: "destructive",
       });
     },
   });
@@ -112,25 +127,25 @@ const StaffManagement = () => {
       };
 
       const { error } = await supabase
-        .from('staff_members')
+        .from("staff_members")
         .update(updateData)
-        .eq('id', id);
+        .eq("id", id);
       if (error) throw error;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['staff-members'] });
+      queryClient.invalidateQueries({ queryKey: ["staff-members"] });
       toast({
-        title: 'Success',
-        description: 'Staff member updated successfully',
+        title: "Success",
+        description: "Staff member updated successfully",
       });
       setIsFormOpen(false);
       setEditingStaff(null);
     },
     onError: () => {
       toast({
-        title: 'Error',
-        description: 'Failed to update staff member',
-        variant: 'destructive',
+        title: "Error",
+        description: "Failed to update staff member",
+        variant: "destructive",
       });
     },
   });
@@ -139,23 +154,23 @@ const StaffManagement = () => {
   const deleteStaffMutation = useMutation({
     mutationFn: async (id: string) => {
       const { error } = await supabase
-        .from('staff_members')
+        .from("staff_members")
         .delete()
-        .eq('id', id);
+        .eq("id", id);
       if (error) throw error;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['staff-members'] });
+      queryClient.invalidateQueries({ queryKey: ["staff-members"] });
       toast({
-        title: 'Success',
-        description: 'Staff member deleted successfully',
+        title: "Success",
+        description: "Staff member deleted successfully",
       });
     },
     onError: () => {
       toast({
-        title: 'Error',
-        description: 'Failed to delete staff member',
-        variant: 'destructive',
+        title: "Error",
+        description: "Failed to delete staff member",
+        variant: "destructive",
       });
     },
   });
@@ -179,16 +194,16 @@ const StaffManagement = () => {
   };
 
   const handleDeleteStaff = (id: string) => {
-    if (confirm('Are you sure you want to delete this staff member?')) {
+    if (confirm("Are you sure you want to delete this staff member?")) {
       deleteStaffMutation.mutate(id);
     }
   };
 
   const getInitials = (name: string) => {
     return name
-      .split(' ')
-      .map(n => n[0])
-      .join('')
+      .split(" ")
+      .map((n) => n[0])
+      .join("")
       .toUpperCase()
       .slice(0, 2);
   };
@@ -196,10 +211,6 @@ const StaffManagement = () => {
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <div>
-          <h2 className="text-2xl font-bold">Our Staff</h2>
-          <p className="text-muted-foreground">Manage your team members information</p>
-        </div>
         <Button onClick={handleAddStaff}>
           <UserPlus className="mr-2 h-4 w-4" />
           Add Staff Member
@@ -230,14 +241,21 @@ const StaffManagement = () => {
                   <TableRow key={staff.id}>
                     <TableCell>
                       <Avatar className="h-12 w-12">
-                        <AvatarImage src={staff.profile_image_url || ''} alt={staff.name} />
-                        <AvatarFallback>{getInitials(staff.name)}</AvatarFallback>
+                        <AvatarImage
+                          src={staff.profile_image_url || ""}
+                          alt={staff.name}
+                        />
+                        <AvatarFallback>
+                          {getInitials(staff.name)}
+                        </AvatarFallback>
                       </Avatar>
                     </TableCell>
                     <TableCell>
                       <div>
                         <div className="font-medium">{staff.name}</div>
-                        <div className="text-sm text-muted-foreground">{staff.designation}</div>
+                        <div className="text-sm text-muted-foreground">
+                          {staff.designation}
+                        </div>
                         {staff.description && (
                           <div className="text-xs text-muted-foreground mt-1 line-clamp-2">
                             {staff.description}
@@ -264,9 +282,9 @@ const StaffManagement = () => {
                     <TableCell>
                       <div className="flex gap-2">
                         {staff.social_media_links?.linkedin && (
-                          <a 
-                            href={staff.social_media_links.linkedin} 
-                            target="_blank" 
+                          <a
+                            href={staff.social_media_links.linkedin}
+                            target="_blank"
                             rel="noopener noreferrer"
                             className="text-blue-600 hover:text-blue-800"
                           >
@@ -274,9 +292,9 @@ const StaffManagement = () => {
                           </a>
                         )}
                         {staff.social_media_links?.twitter && (
-                          <a 
-                            href={staff.social_media_links.twitter} 
-                            target="_blank" 
+                          <a
+                            href={staff.social_media_links.twitter}
+                            target="_blank"
                             rel="noopener noreferrer"
                             className="text-blue-400 hover:text-blue-600"
                           >
@@ -284,9 +302,9 @@ const StaffManagement = () => {
                           </a>
                         )}
                         {staff.social_media_links?.facebook && (
-                          <a 
-                            href={staff.social_media_links.facebook} 
-                            target="_blank" 
+                          <a
+                            href={staff.social_media_links.facebook}
+                            target="_blank"
                             rel="noopener noreferrer"
                             className="text-blue-700 hover:text-blue-900"
                           >
@@ -296,8 +314,10 @@ const StaffManagement = () => {
                       </div>
                     </TableCell>
                     <TableCell>
-                      <Badge variant={staff.is_active ? 'default' : 'secondary'}>
-                        {staff.is_active ? 'Active' : 'Inactive'}
+                      <Badge
+                        variant={staff.is_active ? "default" : "secondary"}
+                      >
+                        {staff.is_active ? "Active" : "Inactive"}
                       </Badge>
                     </TableCell>
                     <TableCell>
@@ -305,7 +325,9 @@ const StaffManagement = () => {
                         <Button
                           variant="outline"
                           size="sm"
-                          onClick={() => window.open(`/staff/${staff.id}`, '_blank')}
+                          onClick={() =>
+                            window.open(`/staff/${staff.id}`, "_blank")
+                          }
                           title="View Profile"
                         >
                           <Eye className="h-4 w-4" />
@@ -341,18 +363,22 @@ const StaffManagement = () => {
           setEditingStaff(null);
         }}
         onSubmit={handleFormSubmit}
-        initialData={editingStaff ? {
-          name: editingStaff.name,
-          designation: editingStaff.designation,
-          description: editingStaff.description || '',
-          email: editingStaff.email || '',
-          phone: editingStaff.phone || '',
-          profile_image_url: editingStaff.profile_image_url || '',
-          linkedin: editingStaff.social_media_links?.linkedin || '',
-          twitter: editingStaff.social_media_links?.twitter || '',
-          facebook: editingStaff.social_media_links?.facebook || '',
-          display_order: editingStaff.display_order,
-        } : undefined}
+        initialData={
+          editingStaff
+            ? {
+                name: editingStaff.name,
+                designation: editingStaff.designation,
+                description: editingStaff.description || "",
+                email: editingStaff.email || "",
+                phone: editingStaff.phone || "",
+                profile_image_url: editingStaff.profile_image_url || "",
+                linkedin: editingStaff.social_media_links?.linkedin || "",
+                twitter: editingStaff.social_media_links?.twitter || "",
+                facebook: editingStaff.social_media_links?.facebook || "",
+                display_order: editingStaff.display_order,
+              }
+            : undefined
+        }
         isLoading={addStaffMutation.isPending || updateStaffMutation.isPending}
       />
     </div>
