@@ -1,6 +1,13 @@
 import React from "react";
-import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import countryData from "country-telephone-data";
+import { Input } from "@/components/ui/input";
 
 interface PersonalInfoSectionProps {
   formData: {
@@ -16,6 +23,13 @@ export const PersonalInfoSection: React.FC<PersonalInfoSectionProps> = ({
   formData,
   onInputChange,
 }) => {
+  const getFlagEmoji = (countryCode: string) =>
+    countryCode
+      .toUpperCase()
+      .replace(/./g, (char) =>
+        String.fromCodePoint(char.charCodeAt(0) + 127397)
+      );
+
   return (
     <>
       {/* Name Fields */}
@@ -72,19 +86,33 @@ export const PersonalInfoSection: React.FC<PersonalInfoSectionProps> = ({
           />
         </div>
 
-        {/* Phone with country code */}
+        {/* Phone with Shadcn Dropdown */}
         <div className="flex gap-2 w-full md:w-auto">
-          <select
-            value={formData.country_code}
-            onChange={(e) => onInputChange("country_code", e.target.value)}
-            className="h-10 w-16 border-gray-200 bg-gray-50 rounded-lg text-sm font-medium px-2"
-          >
-            {countryData.allCountries.map((country) => (
-              <option key={country.iso2} value={`+${country.dialCode}`}>
-                +{country.dialCode}
-              </option>
-            ))}
-          </select>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button className="h-10 w-16 text-left px-2 rounded-lg border border-gray-200 bg-gray-50 text-black hover:bg-gray-50">
+                {formData.country_code || "+977"}
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-60 max-h-60 overflow-auto">
+              {countryData.allCountries
+                .sort((a, b) => a.name.localeCompare(b.name))
+                .map((country) => (
+                  <DropdownMenuItem
+                    key={country.iso2}
+                    onClick={() =>
+                      onInputChange("country_code", `+${country.dialCode}`)
+                    }
+                  >
+                    <span className="mr-2">{getFlagEmoji(country.iso2)}</span>
+                    <span className="flex-1">{country.name}</span>
+                    <span className="text-gray-500">+{country.dialCode}</span>
+                  </DropdownMenuItem>
+                ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          {/* Phone input */}
           <Input
             id="student_phone"
             type="tel"
