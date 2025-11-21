@@ -199,7 +199,7 @@ const LeadEnquiryForm = () => {
                     <img
                       src={service.icon_url}
                       alt={service.title}
-                      className="rounded-t-xl shadow-xl w-full object-cover"
+                      className="rounded-t-xl shadow-xl w-full object-cover h-96"
                     />
                     <div className="flex items-center font-bold justify-between p-5 bg-white">
                       <p>{service.title}</p>
