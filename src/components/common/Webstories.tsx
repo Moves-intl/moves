@@ -1,5 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { BookImage, } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import { BookImage } from "lucide-react";
+import Adventure from "@/../public/web-stories/Adventure Awaits - Travel.jpg";
+import Breaking from "@/../public/web-stories/Breaking Barriers - Technology.jpg";
+import Build from "@/../public/web-stories/Build Bold - Startups.jpg";
+import Connected from "@/../public/web-stories/Connected World - Digital.jpg";
+import Creative from "@/../public/web-stories/Creative Expressions - Art.jpg";
+import Future from "@/../public/web-stories/Future Investments - Finance.jpg";
+import Game from "@/../public/web-stories/Game Changer - Innovation.jpg";
+import Innovate from "@/../public/web-stories/Innovate - Business.jpg";
+import Visual from "@/../public/web-stories/Visual Magic - Design.jpg";
+import Story from "@/../public/web-stories/Your Story - Lifestyle.jpg";
 
 const Webstories = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -8,63 +18,63 @@ const Webstories = () => {
   const stories = [
     {
       id: 1,
-      title: "The world is changing",
-      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=400&fit=crop",
-      category: "Travel"
+      title: "Adventure Awaits",
+      image: Adventure,
+      category: "Travel",
     },
     {
       id: 2,
-      title: "Technology in Business",
-      image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=300&h=400&fit=crop",
-      category: "Business"
+      title: "Breaking Barriers",
+      image: Breaking,
+      category: "Technology",
     },
     {
       id: 3,
-      title: "Future Stories",
-      image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=300&h=400&fit=crop",
-      category: "Technology"
+      title: "Build Bold",
+      image: Build,
+      category: "Startups",
     },
     {
       id: 4,
-      title: "New Horizons",
-      image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=300&h=400&fit=crop",
-      category: "Innovation"
+      title: "Connected World",
+      image: Connected,
+      category: "Digital",
     },
     {
       id: 5,
-      title: "Creative Journey",
-      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=400&fit=crop",
-      category: "Design"
+      title: "Creative Expressions",
+      image: Creative,
+      category: "Art",
     },
     {
       id: 6,
-      title: "Digital World",
-      image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&h=400&fit=crop",
-      category: "Digital"
+      title: "Future Investments",
+      image: Future,
+      category: "Finance",
     },
     {
       id: 7,
-      title: "Modern Life",
-      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=300&h=400&fit=crop",
-      category: "Lifestyle"
+      title: "Game Changer",
+      image: Game,
+      category: "Innovation",
     },
     {
       id: 8,
-      title: "Entrepreneurial Spirit",
-      image: "https://images.unsplash.com/photo-1521791055366-0d553872125f?w=300&h=400&fit=crop",
-      category: "Startups"
+      title: "Innovate",
+      image: Innovate,
+      category: "Business",
     },
     {
       id: 9,
-      title: "Financial Freedom",
-      image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=300&h=400&fit=crop",
-      category: "Finance"
+      title: "Visual Magic",
+      image: Visual,
+      category: "Design",
     },
     {
       id: 10,
-      title: "Artistic Expressions",
-      image: "https://images.unsplash.com/photo-1499781350541-7783f6c6a0c8?w=300&h=400&fit=crop",
-      category: "Art"
+      title: "Your Story",
+      image: Story,
+      category: "Lifestyle",
     },
   ];
 
@@ -88,19 +98,21 @@ const Webstories = () => {
       } else {
         setItemsPerView(8);
       }
-      
-      setCurrentIndex(prev => Math.min(prev, Math.max(stories.length - itemsPerView, 0)));
+
+      setCurrentIndex((prev) =>
+        Math.min(prev, Math.max(stories.length - itemsPerView, 0))
+      );
     };
 
     handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, [itemsPerView, stories.length]);
 
   // Auto-rotate stories
   useEffect(() => {
     if (maxIndex <= 0) return;
-    
+
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => {
         if (prevIndex >= maxIndex) {
@@ -118,15 +130,14 @@ const Webstories = () => {
     <div className="w-full mx-auto px-4 py-8 max-w-12xl">
       <div className="text-center mb-6">
         <div className="inline-flex items-center w-fit leading-tight bg-orange-100 text-orange-600 px-4 py-2 rounded-full text-sm font-medium mb-3">
-        <BookImage className="w-4 h-4 mr-2" />
-        Our Stories
-      </div>
+          <BookImage className="w-4 h-4 mr-2" />
+          Our Stories
+        </div>
         <h2 className="text-4xl font-bold text-primary">Web Stories</h2>
         <p className="text-gray-600 mt-2">Explore Visual Stories</p>
       </div>
 
       <div className="relative overflow-hidden">
-        
         <div
           className="flex transition-transform duration-500 ease-in-out"
           style={{
@@ -172,7 +183,7 @@ const Webstories = () => {
               key={index}
               onClick={() => setCurrentIndex(index)}
               className={`w-2 h-2 rounded-full transition-all duration 300 ${
-                index === currentIndex ? 'bg-primary/90 w-5' : 'bg-gray-300'
+                index === currentIndex ? "bg-primary/90 w-5" : "bg-gray-300"
               }`}
             />
           ))}

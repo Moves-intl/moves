@@ -126,7 +126,7 @@ const Hero = () => {
               <img
                 src="https://coadhiipbnnqlmslpzeu.supabase.co/storage/v1/object/public/media/all/hero_image.png"
                 alt="Students studying abroad"
-                className="w-full h-[700px] object-contain object-right-top rounded-lg"
+                className="w-full h-[350px] sm:h-[700px] object-contain object-right-top rounded-lg"
               />
             </div>
           </div>

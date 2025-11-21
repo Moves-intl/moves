@@ -154,10 +154,10 @@ const Navigation = () => {
                 <img
                   src="/lovable-uploads/abcbb2a1-5db8-45ce-8215-42e053f17039.png"
                   alt="Moves International"
-                  className={`hidden bg-white md:block lg:block w-auto ${
+                  className={` bg-white md:block lg:block w-auto ${
                     scrolled
                       ? "h-14"
-                      : "absolute left-0 h-28 top-0 py-0 shadow-sm"
+                      : "absolute left-0 h-24 sm:h-28 top-0 py-0 shadow-sm"
                   }`}
                   style={{
                     transition: "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
