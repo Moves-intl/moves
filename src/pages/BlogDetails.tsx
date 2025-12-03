@@ -201,19 +201,8 @@ const BlogDetails = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-16 items-center justify-between px-4">
-          <div className="flex items-center gap-4">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => navigate(-1)} // <- goes to previous route
-            >
-              <ArrowLeft className="h-4 w-4" />
-              <span className="hidden sm:inline">Back </span>
-            </Button>
-          </div>
-
+      <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="container flex h-16 items-center justify-end px-4">
           {/* Share buttons */}
           <div className="flex items-center gap-2">
             <Button
@@ -305,6 +294,16 @@ const BlogDetails = () => {
                 alt={blog.featured_image_alt || blog.title}
                 className="w-full h-full object-cover"
               />
+              <div className="absolute top-5 left-5 z-50 flex items-center gap-4 ">
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  onClick={() => navigate(-1)} // <- goes to previous route
+                >
+                  <ArrowLeft className="h-4 w-4" />
+                  <span className="hidden sm:inline">Back </span>
+                </Button>
+              </div>
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-white">
                 <div className="container max-w-4xl">
