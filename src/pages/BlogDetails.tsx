@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -45,6 +45,7 @@ const BlogDetails = () => {
   const { id } = useParams();
   const [openFaqIndex, setOpenFaqIndex] = React.useState<number | null>(null);
   const [isLiked, setIsLiked] = React.useState(false);
+  const navigate = useNavigate();
 
   const { data: blog, isLoading } = useQuery({
     queryKey: ["blog", id],
@@ -203,11 +204,13 @@ const BlogDetails = () => {
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center justify-between px-4">
           <div className="flex items-center gap-4">
-            <Button variant="ghost" size="sm" asChild>
-              <Link to="/blogs" className="flex items-center gap-2">
-                <ArrowLeft className="h-4 w-4" />
-                <span className="hidden sm:inline">Back to Blog</span>
-              </Link>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => navigate(-1)} // <- goes to previous route
+            >
+              <ArrowLeft className="h-4 w-4" />
+              <span className="hidden sm:inline">Back </span>
             </Button>
           </div>
 

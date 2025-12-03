@@ -3,7 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calendar, ArrowRight, Newspaper } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 interface BlogCategory {
   id: string;
@@ -24,17 +24,17 @@ interface Blog {
 }
 
 const LatestUpdates = () => {
-
   const navigate = useNavigate();
   const handleViewAllBlogs = () => {
     navigate("/blogs");
-  }
+  };
   const { data: blogs, isLoading } = useQuery({
     queryKey: ["latest-blogs"],
     queryFn: async () => {
       const { data, error } = await supabase
         .from("blogs")
-        .select(`
+        .select(
+          `
           id, 
           title, 
           slug, 
@@ -48,7 +48,8 @@ const LatestUpdates = () => {
               name
             )
           )
-        `)
+        `
+        )
         .eq("published", true)
         .order("created_at", { ascending: false })
         .limit(3);
@@ -94,32 +95,33 @@ const LatestUpdates = () => {
             Stay Informed
           </h2>
           <div className="flex justify-between">
-
-          <p className="text-xl text-muted-foreground items-start">
-            Discover the latest insights, tips, and news in international education
-          </p>
-          <div className="text-end">
-            <button
-              onClick={handleViewAllBlogs}
-              className="flex items-center -mt-5 gap-2 px-4 py-2 border border-orange-500 bg-orange-100 text-orange-600 rounded-md font-medium hover:bg-orange-200 transition"
-            >
-              View All Articles <ArrowRight className="h-4 w-4" />
-            </button>
-              </div>
+            <p className="text-xl text-muted-foreground items-start">
+              Discover the latest insights, tips, and news in international
+              education
+            </p>
+            <div className="text-end">
+              <button
+                onClick={handleViewAllBlogs}
+                className="flex items-center -mt-5 gap-2 px-4 py-2 border border-orange-500 bg-orange-100 text-orange-600 rounded-md font-medium hover:bg-orange-200 transition"
+              >
+                View All Articles <ArrowRight className="h-4 w-4" />
+              </button>
+            </div>
           </div>
         </div>
 
         {/* Blog Cards */}
         <div className="grid md:grid-cols-3 gap-8">
           {blogs.map((blog, index) => {
-            const categories = blog.blog_category_assignments?.map(
-              (assignment) => assignment.blog_categories
-            ) || [];
+            const categories =
+              blog.blog_category_assignments?.map(
+                (assignment) => assignment.blog_categories
+              ) || [];
 
             return (
               <article
                 key={blog.id}
-                className="group bg-white h-full flex flex-col rounded-lg shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden border border-gray-200 hover:border-primary/50"
+                className="group bg-white h-full flex flex-col rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-gray-200 hover:border-primary/50"
               >
                 {/* Image with Categories */}
                 <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
@@ -183,13 +185,13 @@ const LatestUpdates = () => {
                   </div>
 
                   <Button
-                    asChild
-                    className="mt-auto w-full group-hover:bg-accent/90 bg-accent hover:shadow-2xl hover:shadow-accent/25 group-hover:text-white transition-colors"
+                    onClick={() => navigate(`/blogs/${blog.slug}`)}
+                    variant="default"
+                    size="default"
+                    className="mt-auto w-full bg-accent hover:bg-accent/90 text-white relative z-10"
                   >
-                    <a href={`/blogs/${blog.slug}`} className="inline-flex items-center justify-center gap-2">
-                      Read Article
-                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    </a>
+                    Read Article
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Button>
                 </div>
               </article>
