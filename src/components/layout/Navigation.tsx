@@ -18,6 +18,25 @@ const Navigation = () => {
   const [destinations, setDestinations] = useState([]);
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [universities, setUniversities] = useState([]);
+
+  useEffect(() => {
+    const fetchUniversities = async () => {
+      try {
+        const { data, error } = await supabase
+          .from("universities")
+          .select("id, name, slug")
+          .order("name");
+
+        if (error) throw error;
+        setUniversities(data || []);
+      } catch (error) {
+        console.error("Error fetching universities:", error);
+      }
+    };
+
+    fetchUniversities();
+  }, []);
 
   // Fetch destinations and services with useEffect
   useEffect(() => {
@@ -74,20 +93,24 @@ const Navigation = () => {
       })),
   ];
 
+  const universitySubmenu = [
+    { name: "All Universities", path: "/universities" },
+    ...universities
+      .filter((uni) => uni.slug)
+      .map((uni) => ({
+        name: uni.name,
+        path: `/universities/${uni.slug}`,
+      })),
+  ];
+
   const navigationItems = [
     { name: "Home", path: "/" },
     { name: "Find a Course", path: "/courses" },
-    {
-      name: "Destinations",
-      path: "/destinations",
-      hasMegaMenu: true,
-    },
-    {
-      name: "Services",
-      path: "/services",
-      hasMegaMenu: true,
-    },
+    { name: "Destinations", path: "/destinations", hasMegaMenu: true },
+    { name: "Services", path: "/services", hasMegaMenu: true },
+    { name: "Universities", path: "/universities", submenu: universitySubmenu },
   ];
+
   const secondaryMenuItems = [
     { name: "About Us", path: "/about" },
     { name: "Blogs", path: "/blogs" },
