@@ -37,7 +37,7 @@ type ContactFormData = z.infer<typeof contactSchema>;
 
 const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [recaptchaLoaded, setRecaptchaLoaded] = useState(false);
+  // const [recaptchaLoaded, setRecaptchaLoaded] = useState(false);
   const { toast } = useToast();
   const { checkRateLimit } = useRateLimit();
   const { logEvent } = useAuditLog();
@@ -71,40 +71,40 @@ const ContactForm = () => {
   }
 
   // ContactForm useEffect
-  useEffect(() => {
-    if (window.grecaptcha) {
-      setRecaptchaLoaded(true);
-      return;
-    }
+  // useEffect(() => {
+  //   if (window.grecaptcha) {
+  //     setRecaptchaLoaded(true);
+  //     return;
+  //   }
 
-    const script = document.createElement("script");
-    script.src = `https://www.recaptcha.net/recaptcha/api.js?render=6LfUk6UrAAAAAIoWzkz54uHyaR0cXY0H2DCQb7Nn`;
-    script.async = true;
-    script.defer = true;
-    script.onload = () => {
-      if (window.grecaptcha) {
-        setRecaptchaLoaded(true);
-      } else {
-        toast({
-          title: "Security Error",
-          description: "Could not load security verification",
-          variant: "destructive",
-        });
-      }
-    };
-    script.onerror = () => {
-      toast({
-        title: "Security Error",
-        description: "Failed to load security verification",
-        variant: "destructive",
-      });
-    };
-    document.body.appendChild(script);
+  //   const script = document.createElement("script");
+  //   script.src = `https://www.recaptcha.net/recaptcha/api.js?render=6LfUk6UrAAAAAIoWzkz54uHyaR0cXY0H2DCQb7Nn`;
+  //   script.async = true;
+  //   script.defer = true;
+  //   script.onload = () => {
+  //     if (window.grecaptcha) {
+  //       setRecaptchaLoaded(true);
+  //     } else {
+  //       toast({
+  //         title: "Security Error",
+  //         description: "Could not load security verification",
+  //         variant: "destructive",
+  //       });
+  //     }
+  //   };
+  //   script.onerror = () => {
+  //     toast({
+  //       title: "Security Error",
+  //       description: "Failed to load security verification",
+  //       variant: "destructive",
+  //     });
+  //   };
+  //   document.body.appendChild(script);
 
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, [toast]);
+  //   return () => {
+  //     document.body.removeChild(script);
+  //   };
+  // }, [toast]);
 
   const getRecaptchaToken = async (): Promise<string> => {
     if (!window.grecaptcha) {
@@ -335,7 +335,8 @@ const ContactForm = () => {
 
       <Button
         type="submit"
-        disabled={isSubmitting || !recaptchaLoaded}
+        // disabled={isSubmitting || !recaptchaLoaded}
+        disabled={isSubmitting}
         className="w-full bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white py-3 text-lg font-semibold transition-all duration-200"
       >
         {isSubmitting ? (

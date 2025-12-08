@@ -108,7 +108,6 @@ const Navigation = () => {
     { name: "Find a Course", path: "/courses" },
     { name: "Destinations", path: "/destinations", hasMegaMenu: true },
     { name: "Services", path: "/services", hasMegaMenu: true },
-    { name: "Universities", path: "/universities", submenu: universitySubmenu },
   ];
 
   const secondaryMenuItems = [
