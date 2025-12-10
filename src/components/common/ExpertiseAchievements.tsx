@@ -106,11 +106,8 @@ const ExpertiseAchievements = () => {
           <div className="flex flex-col h-full space-y-8">
             {/* Video Placeholder */}
             <div className="relative aspect-video bg-gray-200 rounded-2xl overflow-hidden shadow-lg">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <PlayCircle className="h-16 w-16 text-primary" />
-              </div>
               <img
-                src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                src="https://movesinternational.com.au/_next/image?url=%2Fmisc%2Fabout-agency.jpg&w=1080&q=75"
                 alt="Video thumbnail"
                 className="w-full h-full object-cover"
               />
@@ -122,7 +119,7 @@ const ExpertiseAchievements = () => {
               <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
                 <div className="flex flex-col items-center text-center">
                   <img
-                    src="/study-international-logo.png"
+                    src="https://movesinternational.com.au/_next/image?url=%2Fhome%2Fachievement.png&w=64&q=75"
                     alt="Study International Logo"
                     className="w-8 h-8 mb-3 object-contain"
                   />
@@ -137,7 +134,7 @@ const ExpertiseAchievements = () => {
               <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
                 <div className="flex flex-col items-center text-center">
                   <img
-                    src="/study-international-logo.png"
+                    src="https://movesinternational.com.au/_next/image?url=%2Fhome%2Frate.png&w=64&q=75"
                     alt="Study International Logo"
                     className="w-8 h-8 mb-3 object-contain"
                   />
@@ -154,7 +151,7 @@ const ExpertiseAchievements = () => {
               <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
                 <div className="flex flex-col items-center text-center">
                   <img
-                    src="/study-international-logo.png"
+                    src="https://movesinternational.com.au/_next/image?url=%2Fhome%2Fbussiness-man.png&w=64&q=75"
                     alt="Study International Logo"
                     className="w-8 h-8 mb-3 object-contain"
                   />

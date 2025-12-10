@@ -62,9 +62,10 @@ const Blogs = () => {
           `
           id, title, slug, content, featured_image_url, featured_image_alt,
           author, created_at, tags,
-          blog_category_assignments(
-            blog_categories(name, id)
-          )
+          blog_category_assignments!inner(
+  blog_categories(name, id)
+)
+
         `
         )
         .eq("published", true);
@@ -72,7 +73,7 @@ const Blogs = () => {
       // Apply category filter at database level if specific category selected
       if (selectedCategory !== "all") {
         blogsQuery = blogsQuery.eq(
-          "blog_category_assignments.blog_categories.name",
+          "blog_category_assignments.category_id",
           selectedCategory
         );
       }
@@ -447,7 +448,7 @@ const Blogs = () => {
                 <SelectContent className="bg-background border">
                   <SelectItem value="all">All Categories</SelectItem>
                   {categories?.map((category) => (
-                    <SelectItem key={category.id} value={category.name}>
+                    <SelectItem key={category.id} value={category.id}>
                       {category.name}
                     </SelectItem>
                   ))}
