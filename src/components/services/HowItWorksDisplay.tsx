@@ -1,5 +1,5 @@
-import React from 'react';
-import { Card, CardContent } from '@/components/ui/card';
+import React from "react";
+import { Card, CardContent } from "@/components/ui/card";
 
 interface HowItWorksBlurb {
   icon: string;
@@ -26,15 +26,12 @@ const HowItWorksDisplay: React.FC<HowItWorksDisplayProps> = ({
 
   return (
     <section className="py-20 bg-white">
-      <div className="max-w-7xl grid lg:grid-cols-2 gap-[30px]  mx-auto">
+      <div className="max-w-7xl grid lg:grid-cols-[40%_60%] gap-[30px]  mx-auto">
         {/* Left Column - Full height image */}
         <div className="self-start sticky top-20">
           {featureImageUrl && (
             <div className="w-full  flex items-center">
-              <img
-                src={featureImageUrl}
-                alt={title || "How it works"}
-              />
+              <img src={featureImageUrl} alt={title || "How it works"} />
             </div>
           )}
         </div>
@@ -75,12 +72,12 @@ const HowItWorksDisplay: React.FC<HowItWorksDisplayProps> = ({
                           />
                         </div>
                       )}
-                      
+
                       {/* Title */}
                       <h3 className="text-xl font-semibold text-foreground">
                         {blurb.title}
                       </h3>
-                      
+
                       {/* Description */}
                       <p className="text-muted-foreground leading-relaxed">
                         {blurb.description}
