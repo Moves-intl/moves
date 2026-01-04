@@ -819,8 +819,8 @@ const UniversityDetails = () => {
                       university.admission_requirements.length > 0 ? (
                         (university.admission_requirements as any[]).map(
                           (req: any, index: number) => (
-                            <div key={index} className="flex items-start gap-3">
-                              <CheckCircle className="h-5 w-5 text-green-600 mt-0.5" />
+                            <div className="flex items-start gap-3">
+                              <CheckCircle className="h-4 w-4 mt-[6px] text-green-600 leading-none shrink-0" />
                               <div>
                                 <div className="font-medium">{req.title}</div>
                                 <div className="text-sm text-muted-foreground">

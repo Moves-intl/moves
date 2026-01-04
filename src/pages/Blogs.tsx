@@ -432,42 +432,44 @@ const Blogs = () => {
       <section className="sticky top-0 z-40 bg-background/95 backdrop-blur border-b">
         <div className="container mx-auto px-4 py-4">
           <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 flex-wrap">
               <div className="flex items-center gap-2">
                 <Filter className="h-4 w-4 text-primary" />
                 <span className="font-semibold">Filter</span>
               </div>
 
-              <Select
-                value={selectedCategory}
-                onValueChange={setSelectedCategory}
-              >
-                <SelectTrigger className="w-48">
-                  <SelectValue placeholder="Category" />
-                </SelectTrigger>
-                <SelectContent className="bg-background border">
-                  <SelectItem value="all">All Categories</SelectItem>
-                  {categories?.map((category) => (
-                    <SelectItem key={category.id} value={category.id}>
-                      {category.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              <div className="flex items-center gap-4 flex-wrap">
+                <Select
+                  value={selectedCategory}
+                  onValueChange={setSelectedCategory}
+                >
+                  <SelectTrigger className="w-48">
+                    <SelectValue placeholder="Category" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-background border">
+                    <SelectItem value="all">All Categories</SelectItem>
+                    {categories?.map((category) => (
+                      <SelectItem key={category.id} value={category.id}>
+                        {category.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
 
-              <Select
-                value={sortBy}
-                onValueChange={(value: any) => setSortBy(value)}
-              >
-                <SelectTrigger className="w-40">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent className="bg-background border">
-                  <SelectItem value="newest">Latest</SelectItem>
-                  <SelectItem value="popular">Popular</SelectItem>
-                  <SelectItem value="trending">Trending</SelectItem>
-                </SelectContent>
-              </Select>
+                <Select
+                  value={sortBy}
+                  onValueChange={(value: any) => setSortBy(value)}
+                >
+                  <SelectTrigger className="w-40">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent className="bg-background border">
+                    <SelectItem value="newest">Latest</SelectItem>
+                    <SelectItem value="popular">Popular</SelectItem>
+                    <SelectItem value="trending">Trending</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
 
             <div className="flex items-center gap-2">
