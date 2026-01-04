@@ -27,30 +27,35 @@ const Webstories = () => {
       title: "SCHOLARSHIP HUB",
       image: ScholarShipHub,
       category: "Get Your Personalized Scholarship Match",
+      link: "/services/scholarship-guidance",
     },
     {
       id: 2,
       title: "TEST PREP MASTERY",
       image: TestPrep,
       category: "Register for our Next Success Batch",
+      link: "/services/test-preparation",
     },
     {
       id: 3,
       title: "SOP & LOR SECRETS",
       image: Sop,
       category: "See our full Application Support",
+      link: "/services/application-support",
     },
     {
       id: 4,
       title: "YOUR SUCCESS STORY IS NEXT!",
       image: Connected,
       category: "See how we helped others achieve their dreams",
+      link: "/",
     },
     {
       id: 5,
       title: "SEE YOUR FUTURE CAREER PATH",
       image: Creative,
       category: "Book a Free Global Career Planning Session",
+      link: "#lead_form",
     },
     {
       id: 6,
@@ -58,6 +63,7 @@ const Webstories = () => {
       image: Future,
       category:
         "Book a free 1-on-1 session with our career expert to validate your course choice and secure your global job blueprint. ",
+      link: "#lead_form",
     },
   ];
 
@@ -132,6 +138,14 @@ const Webstories = () => {
               key={story.id}
               className="flex-shrink-0 px-2"
               style={{ width: cardWidth }}
+              onClick={() => {
+                if (story.link.startsWith("#")) {
+                  const el = document.querySelector(story.link);
+                  el?.scrollIntoView({ behavior: "smooth" });
+                } else {
+                  window.open(story.link, "_blank");
+                }
+              }}
             >
               <div className="relative group cursor-pointer h-full">
                 <div className="relative overflow-hidden rounded-lg shadow-lg h-full">
