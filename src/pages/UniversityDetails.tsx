@@ -309,7 +309,7 @@ const UniversityDetails = () => {
                   )}
                 </div>
                 {/* Quick Stats Grid */}
-                <div className="grid grid-cols-4 gap-3 max-w-3xl">
+                <div className="grid  grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl">
                   {stats.map((stat, index) => (
                     <Card
                       key={index}
@@ -820,7 +820,7 @@ const UniversityDetails = () => {
                         (university.admission_requirements as any[]).map(
                           (req: any, index: number) => (
                             <div className="flex items-start gap-3">
-                              <CheckCircle className="h-4 w-4 mt-[6px] text-green-600 leading-none shrink-0" />
+                              <CheckCircle className="h-4 w-4 mt-[6pxoo] text-green-600 leading-none shrink-0" />
                               <div>
                                 <div className="font-medium">{req.title}</div>
                                 <div className="text-sm text-muted-foreground">
@@ -946,7 +946,11 @@ const UniversityDetails = () => {
                   </p>
                   <div className="flex flex-col sm:flex-row gap-3 justify-center">
                     <Button size="lg">Start Your Application</Button>
-                    <Button size="lg" variant="outline">
+                    <Button
+                      onClick={() => navigate("/services/application-support")}
+                      size="lg"
+                      variant="outline"
+                    >
                       Get Application Help
                     </Button>
                   </div>
