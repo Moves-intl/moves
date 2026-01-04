@@ -1,21 +1,15 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { BookImage } from "lucide-react";
-import Adventure from "@/../public/web-stories/Adventure Awaits - Travel.jpg";
-import Breaking from "@/../public/web-stories/Breaking Barriers - Technology.jpg";
-import Build from "@/../public/web-stories/Build Bold - Startups.jpg";
 import Connected from "@/../public/web-stories/Connected World - Digital.jpg";
 import Creative from "@/../public/web-stories/Creative Expressions - Art.jpg";
 import Future from "@/../public/web-stories/Future Investments - Finance.jpg";
-import Game from "@/../public/web-stories/Game Changer - Innovation.jpg";
-import Innovate from "@/../public/web-stories/Innovate - Business.jpg";
-import Visual from "@/../public/web-stories/Visual Magic - Design.jpg";
-import Story from "@/../public/web-stories/Your Story - Lifestyle.jpg";
 import ScholarShipHub from "@/../public/web-stories/scholarship_hub.jpg";
 import TestPrep from "@/../public/web-stories/test_prep_mastery.png";
 import Sop from "@/../public/web-stories/sop.png";
-import SuccessStory from "@/../public/web-stories/success_story.png";
-import CareerPath from "@/../public/web-stories/future_career.png";
-import DegreeOfChoice from "@/../public/web-stories/degree_of_choice.png";
+import VisaEligibility from "@/../public/web-stories/visa_eligibility.png";
+import CompareOffer from "@/../public/web-stories/compare_offer.png";
+import Document from "@/../public/web-stories/document.png";
+import RealExam from "@/../public/web-stories/real_exam.png";
 
 const Webstories = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -64,6 +58,30 @@ const Webstories = () => {
       category:
         "Book a free 1-on-1 session with our career expert to validate your course choice and secure your global job blueprint. ",
       link: "#lead_form",
+    },
+    {
+      id: 7,
+      title: "CHECK YOUR VISA ELIGIBILITY NOW!",
+      image: VisaEligibility,
+      link: "/services/consultation",
+    },
+    {
+      id: 9,
+      title: "PRACTICE WITH REAL EXAM CONDITIONS",
+      image: RealExam,
+      link: "/services/test-preparation",
+    },
+    {
+      id: 8,
+      title: "COMPARE OFFERS SIDE-BY-SIDE",
+      image: CompareOffer,
+      link: "/services/consultation",
+    },
+    {
+      id: 10,
+      title: "GET YOUR DOCUMENTS VERIFIED FREE",
+      image: Document,
+      link: "/services/application-support",
     },
   ];
 
