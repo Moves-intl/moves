@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react'; // 1. Added useRef import
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -20,6 +20,16 @@ export const FeaturedImageSection: React.FC<FeaturedImageSectionProps> = ({
   onChange,
   onImageFileChange,
 }) => {
+  const mediaLibraryRef = useRef<HTMLDivElement>(null);
+
+  // Logic to trigger the Media Library browse button
+  const handleLibraryClick = () => {
+    const browseButton = mediaLibraryRef.current?.querySelector('button');
+    if (browseButton) {
+      browseButton.click();
+    }
+  };
+
   return (
     <Card>
       <CardHeader>
@@ -27,8 +37,20 @@ export const FeaturedImageSection: React.FC<FeaturedImageSectionProps> = ({
       </CardHeader>
       <CardContent className="space-y-4">
         <div>
-          <Label htmlFor="image-upload">Upload Image</Label>
+          <Label>Image Selection</Label>
           <div className="mt-2 flex items-center gap-4">
+            {/* THIS BUTTON OPENS MEDIA LIBRARY */}
+            <Button
+              type="button"
+              variant="outline"
+              onClick={handleLibraryClick}
+              className="flex items-center gap-2"
+            >
+              <ImageIcon className="h-4 w-4" />
+              Choose Image
+            </Button>
+
+            {/* THIS BUTTON OPENS LOCAL COMPUTER FILES */}
             <Button
               type="button"
               variant="outline"
@@ -36,8 +58,9 @@ export const FeaturedImageSection: React.FC<FeaturedImageSectionProps> = ({
               className="flex items-center gap-2"
             >
               <Upload className="h-4 w-4" />
-              Choose Image
+              Upload Image
             </Button>
+
             <input
               id="image-upload"
               type="file"
@@ -45,15 +68,10 @@ export const FeaturedImageSection: React.FC<FeaturedImageSectionProps> = ({
               onChange={onImageFileChange}
               className="hidden"
             />
-            {formData.featured_image_url && (
-              <div className="flex items-center gap-2 text-sm text-green-600">
-                <ImageIcon className="h-4 w-4" />
-                Image selected
-              </div>
-            )}
           </div>
         </div>
 
+        {/* Preview Section */}
         {formData.featured_image_url && (
           <div className="space-y-2">
             <img
@@ -75,18 +93,21 @@ export const FeaturedImageSection: React.FC<FeaturedImageSectionProps> = ({
           </div>
         )}
 
-        <MediaSelector
-          value={formData.featured_image_url}
-          onChange={(value) => {
-            const event = {
-              target: { name: 'featured_image_url', value }
-            } as React.ChangeEvent<HTMLInputElement>;
-            onChange(event);
-          }}
-          label="Or browse media library"
-          placeholder="Select from media library"
-          accept="image/*"
-        />
+        {/*  WRAP THE SELECTOR IN THE REF */}
+        <div ref={mediaLibraryRef}>
+          <MediaSelector
+            value={formData.featured_image_url}
+            onChange={(value) => {
+              const event = {
+                target: { name: 'featured_image_url', value }
+              } as React.ChangeEvent<HTMLInputElement>;
+              onChange(event);
+            }}
+            label="Or browse media library"
+            placeholder="Select from media library"
+            accept="image/*"
+          />
+        </div>
 
         <div>
           <Label htmlFor="featured_image_url">Or paste image URL</Label>
