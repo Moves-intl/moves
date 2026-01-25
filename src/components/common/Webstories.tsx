@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { BookImage } from "lucide-react";
-import Adventure from "@/../public/web-stories/Adventure Awaits - Travel.jpg";
-import Breaking from "@/../public/web-stories/Breaking Barriers - Technology.jpg";
-import Build from "@/../public/web-stories/Build Bold - Startups.jpg";
 import Connected from "@/../public/web-stories/Connected World - Digital.jpg";
 import Creative from "@/../public/web-stories/Creative Expressions - Art.jpg";
 import Future from "@/../public/web-stories/Future Investments - Finance.jpg";
-import Game from "@/../public/web-stories/Game Changer - Innovation.jpg";
-import Innovate from "@/../public/web-stories/Innovate - Business.jpg";
-import Visual from "@/../public/web-stories/Visual Magic - Design.jpg";
-import Story from "@/../public/web-stories/Your Story - Lifestyle.jpg";
+import ScholarShipHub from "@/../public/web-stories/scholarship_hub.jpg";
+import TestPrep from "@/../public/web-stories/test_prep_mastery.png";
+import Sop from "@/../public/web-stories/sop.png";
+import VisaEligibility from "@/../public/web-stories/visa_eligibility.png";
+import CompareOffer from "@/../public/web-stories/compare_offer.png";
+import Document from "@/../public/web-stories/document.png";
+import RealExam from "@/../public/web-stories/real_exam.png";
 
 const Webstories = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -18,63 +18,70 @@ const Webstories = () => {
   const stories = [
     {
       id: 1,
-      title: "Adventure Awaits",
-      image: Adventure,
-      category: "Travel",
+      title: "SCHOLARSHIP HUB",
+      image: ScholarShipHub,
+      category: "Get Your Personalized Scholarship Match",
+      link: "/services/scholarship-guidance",
     },
     {
       id: 2,
-      title: "Breaking Barriers",
-      image: Breaking,
-      category: "Technology",
+      title: "TEST PREP MASTERY",
+      image: TestPrep,
+      category: "Register for our Next Success Batch",
+      link: "/services/test-preparation",
     },
     {
       id: 3,
-      title: "Build Bold",
-      image: Build,
-      category: "Startups",
+      title: "SOP & LOR SECRETS",
+      image: Sop,
+      category: "See our full Application Support",
+      link: "/services/application-support",
     },
     {
       id: 4,
-      title: "Connected World",
+      title: "YOUR SUCCESS STORY IS NEXT!",
       image: Connected,
-      category: "Digital",
+      category: "See how we helped others achieve their dreams",
+      link: "/",
     },
     {
       id: 5,
-      title: "Creative Expressions",
+      title: "SEE YOUR FUTURE CAREER PATH",
       image: Creative,
-      category: "Art",
+      category: "Book a Free Global Career Planning Session",
+      link: "#lead_form",
     },
     {
       id: 6,
-      title: "Future Investments",
+      title: "Top-Demand Degree of Your Choice",
       image: Future,
-      category: "Finance",
+      category:
+        "Book a free 1-on-1 session with our career expert to validate your course choice and secure your global job blueprint. ",
+      link: "#lead_form",
     },
     {
       id: 7,
-      title: "Game Changer",
-      image: Game,
-      category: "Innovation",
-    },
-    {
-      id: 8,
-      title: "Innovate",
-      image: Innovate,
-      category: "Business",
+      title: "CHECK YOUR VISA ELIGIBILITY NOW!",
+      image: VisaEligibility,
+      link: "/services/consultation",
     },
     {
       id: 9,
-      title: "Visual Magic",
-      image: Visual,
-      category: "Design",
+      title: "PRACTICE WITH REAL EXAM CONDITIONS",
+      image: RealExam,
+      link: "/services/test-preparation",
+    },
+    {
+      id: 8,
+      title: "COMPARE OFFERS SIDE-BY-SIDE",
+      image: CompareOffer,
+      link: "/services/consultation",
     },
     {
       id: 10,
-      title: "Your Story",
-      image: Story,
-      category: "Lifestyle",
+      title: "GET YOUR DOCUMENTS VERIFIED FREE",
+      image: Document,
+      link: "/services/application-support",
     },
   ];
 
@@ -149,6 +156,14 @@ const Webstories = () => {
               key={story.id}
               className="flex-shrink-0 px-2"
               style={{ width: cardWidth }}
+              onClick={() => {
+                if (story.link.startsWith("#")) {
+                  const el = document.querySelector(story.link);
+                  el?.scrollIntoView({ behavior: "smooth" });
+                } else {
+                  window.open(story.link, "_blank");
+                }
+              }}
             >
               <div className="relative group cursor-pointer h-full">
                 <div className="relative overflow-hidden rounded-lg shadow-lg h-full">
@@ -160,9 +175,6 @@ const Webstories = () => {
                   {/* Enhanced gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/30 to-transparent">
                     <div className="absolute bottom-0 left-0 right-0 p-4">
-                      <div className="text-xs text-white/90 mb-1 font-medium uppercase tracking-wider">
-                        {story.category}
-                      </div>
                       <h3 className="text-white font-semibold text-lg leading-snug">
                         {story.title}
                       </h3>

@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
-import { Dialog, DialogContent } from '@/components/ui/dialog';
-import CounsellingBookingForm from '@/components/forms/CounsellingBookingForm';
-import counsellingImage from '@/assets/counselling-support.jpg';
-import { X, Sparkles, GraduationCap, Globe } from 'lucide-react';
+import { useState, useEffect } from "react";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import CounsellingBookingForm from "@/components/forms/CounsellingBookingForm";
+import counsellingImage from "@/assets/counselling-support.jpg";
+import { X, Sparkles, GraduationCap, Globe } from "lucide-react";
 
 const CounsellingPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,17 +11,20 @@ const CounsellingPopup = () => {
   useEffect(() => {
     const handleScroll = () => {
       if (hasShown) return;
-      
-      const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-      
+
+      const scrollPercentage =
+        (window.scrollY /
+          (document.documentElement.scrollHeight - window.innerHeight)) *
+        100;
+
       if (scrollPercentage >= 20) {
         setIsOpen(true);
         setHasShown(true);
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [hasShown]);
 
   const handleSuccess = () => {
@@ -41,7 +44,7 @@ const CounsellingPopup = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[500px] max-h-[80vh]">
           {/* Left Column - Hero Content */}
-          <div className="relative bg-gradient-to-br from-[#023047] via-[#034a6b] to-[#023047] p-6 lg:p-8 flex flex-col justify-center overflow-hidden">
+          <div className="hidden lg:flex relative bg-gradient-to-br from-[#023047] via-[#034a6b] to-[#023047] p-6 lg:p-8 flex-col justify-center overflow-hidden">
             {/* Animated Background Elements */}
             <div className="absolute inset-0 opacity-20">
               <div className="absolute top-10 left-10 w-32 h-32 bg-white/10 rounded-full blur-xl animate-pulse"></div>
@@ -53,7 +56,9 @@ const CounsellingPopup = () => {
               {/* Badge */}
               <div className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full border border-white/30">
                 <Sparkles className="w-4 h-4 text-[#fa8500] mr-2" />
-                <span className="text-white font-medium text-sm">Limited Time Offer</span>
+                <span className="text-white font-medium text-sm">
+                  Limited Time Offer
+                </span>
               </div>
 
               {/* Main Heading */}
@@ -65,7 +70,8 @@ const CounsellingPopup = () => {
                   </span>
                 </h2>
                 <p className="text-lg text-blue-100 leading-relaxed max-w-md">
-                  Get personalized guidance from education experts – completely free consultation
+                  Get personalized guidance from education experts – completely
+                  free consultation
                 </p>
               </div>
 
@@ -73,15 +79,21 @@ const CounsellingPopup = () => {
               <div className="space-y-3">
                 <div className="flex items-center space-x-3 text-white/90">
                   <div className="w-2 h-2 bg-[#fa8500] rounded-full"></div>
-                  <span className="font-medium text-sm">Expert counsellors with 10+ years experience</span>
+                  <span className="font-medium text-sm">
+                    Expert counsellors with 10+ years experience
+                  </span>
                 </div>
                 <div className="flex items-center space-x-3 text-white/90">
                   <div className="w-2 h-2 bg-[#fa8500] rounded-full"></div>
-                  <span className="font-medium text-sm">Personalized university recommendations</span>
+                  <span className="font-medium text-sm">
+                    Personalized university recommendations
+                  </span>
                 </div>
                 <div className="flex items-center space-x-3 text-white/90">
                   <div className="w-2 h-2 bg-[#fa8500] rounded-full"></div>
-                  <span className="font-medium text-sm">Scholarship guidance & application support</span>
+                  <span className="font-medium text-sm">
+                    Scholarship guidance & application support
+                  </span>
                 </div>
               </div>
 
@@ -89,8 +101,8 @@ const CounsellingPopup = () => {
               <div className="relative">
                 <div className="relative rounded-xl overflow-hidden shadow-xl group">
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10"></div>
-                  <img 
-                    src={counsellingImage} 
+                  <img
+                    src={counsellingImage}
                     alt="Students receiving counselling support for international education"
                     className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-700"
                   />
@@ -109,12 +121,17 @@ const CounsellingPopup = () => {
               </div>
             </div>
           </div>
-          
+
           {/* Right Column - Form */}
           <div className="p-6 lg:p-8 overflow-y-auto bg-white/80 backdrop-blur-sm">
             <div className="mb-4">
-              <h3 className="text-xl font-bold text-[#023047] mb-2">Book Your Free Session</h3>
-              <p className="text-gray-600 text-sm">Fill out the form below and we'll get back to you within 24 hours</p>
+              <h3 className="text-xl font-bold text-[#023047] mb-2">
+                Book Your Free Session
+              </h3>
+              <p className="text-gray-600 text-sm">
+                Fill out the form below and we'll get back to you within 24
+                hours
+              </p>
             </div>
             <CounsellingBookingForm onSuccess={handleSuccess} />
           </div>
