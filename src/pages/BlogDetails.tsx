@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { Helmet } from 'react-helmet-async';
 import {
   Collapsible,
   CollapsibleContent,
@@ -58,7 +59,7 @@ const BlogDetails = () => {
         .select(
           `
           id, title, slug, content, featured_image_url, featured_image_alt,
-          author, created_at, tags, faqs, meta_description,
+          author, created_at, tags, faqs, meta_title, meta_description,
           blog_category_assignments(
             blog_categories(name, id)
           )
@@ -200,6 +201,12 @@ const BlogDetails = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+  <title>{blog.meta_title || blog.title}</title>
+  {blog.meta_description && (
+    <meta name="description" content={blog.meta_description} />
+  )}
+</Helmet>
       {/* Header */}
       <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center justify-end px-4">
