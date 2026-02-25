@@ -201,11 +201,9 @@ const BlogDetails = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Helmet>
+<Helmet>
   <title>{blog.meta_title || blog.title}</title>
-  {blog.meta_description && (
-    <meta name="description" content={blog.meta_description} />
-  )}
+  <meta name="description" content={blog.meta_description || ''} />
 </Helmet>
       {/* Header */}
       <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
