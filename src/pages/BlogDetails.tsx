@@ -297,7 +297,7 @@ const BlogDetails = () => {
               <img
                 src={blog.featured_image_url}
                 alt={blog.featured_image_alt || blog.title}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-top"
               />
               <div className="absolute top-5 left-5 z-50 flex items-center gap-4 ">
                 <Button
