@@ -424,10 +424,32 @@ const BlogDetails = () => {
           {/* Content */}
           <article className="prose prose-lg max-w-none mb-8 md:mb-12">
             {blog.content ? (
-              <div
-                className="text-foreground leading-relaxed"
-                dangerouslySetInnerHTML={{ __html: blog.content }}
-              />
+             <>
+                <style>{`
+                  .blog-content table {
+                    border-collapse: collapse;
+                    width: 100%;
+                    margin: 1.5em 0;
+                  }
+                  .blog-content td, .blog-content th {
+                    border: 1px solid #d1d5db;
+                    padding: 10px 14px;
+                    vertical-align: top;
+                    text-align: left;
+                  }
+                  .blog-content th {
+                    background-color: #f3f4f6;
+                    font-weight: 600;
+                  }
+                  .blog-content tr:nth-child(even) td {
+                    background-color: #f9fafb;
+                  }
+                `}</style>
+                <div
+                  className="blog-content text-foreground leading-relaxed"
+                  dangerouslySetInnerHTML={{ __html: blog.content }}
+                />
+              </>
             ) : (
               <div className="text-center py-12">
                 <BookOpen className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
