@@ -46,12 +46,12 @@ const Hero = () => {
           {/* Left Content */}
           <div className="space-y-8">
             <div className="space-y-4">
-              <h1 className="text-4xl lg:text-6xl font-bold leading-tight">
+              <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold leading-tight">
                 Start Your
                 <span className="text-accent block">Study Abroad</span>
                 Journey Today
               </h1>
-              <p className="text-xl text-gray-300 leading-relaxed">
+              <p className="text-base sm:text-xl text-gray-300 leading-relaxed">
                 Discover thousands of courses from top universities in
                 Australia, Canada, UK, and more. Get expert guidance from our
                 certified education consultants.

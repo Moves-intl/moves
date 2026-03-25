@@ -179,7 +179,7 @@ const Events = () => {
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
-          <div className="text-center space-y-8 min-h-[400px] flex flex-col justify-center">
+          <div className="text-center space-y-6 sm:space-y-8 lg:min-h-[400px] flex flex-col justify-center">
             {/* Top Badge */}
             <div className="inline-flex items-center gap-2 bg-gradient-to-r from-primary/10 to-primary/20 px-4 py-2 rounded-full text-sm font-medium text-primary mx-auto">
               <span className="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
@@ -187,7 +187,7 @@ const Events = () => {
             </div>
             
             {/* Main Heading */}
-            <h1 className="text-5xl lg:text-7xl font-black leading-tight">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-7xl font-black leading-tight">
               <span className="block bg-gradient-to-r from-foreground via-foreground to-primary/80 bg-clip-text text-transparent">
                 Build Your
               </span>

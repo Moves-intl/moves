@@ -31,7 +31,7 @@ const ExpertiseAchievements = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Left Column - Text Content */}
-          <div className="flex flex-col gap-[22px] border border-dashed lg:py-[35.5px] lg:px-[50px] rounded-lg from_texteditor_wrapper">
+          <div className="flex flex-col gap-[22px] border border-dashed py-5 px-4 sm:py-6 sm:px-6 lg:py-[35.5px] lg:px-[50px] rounded-lg from_texteditor_wrapper">
             <div className="flex items-start gap-3">
               <Flag className="w-6 h-6 text-green-500" />
               <span className="text-xl font-semibold text-primary">
@@ -116,14 +116,14 @@ const ExpertiseAchievements = () => {
             {/* Stats Cards */}
             <div className="grid grid-cols-3 gap-4">
               {/* Established In */}
-              <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+              <div className="bg-white border border-gray-200 rounded-lg p-3 sm:p-4 lg:p-6 shadow-sm hover:shadow-md transition-shadow">
                 <div className="flex flex-col items-center text-center">
                   <img
                     src="https://movesinternational.com.au/_next/image?url=%2Fhome%2Fachievement.png&w=64&q=75"
                     alt="Study International Logo"
                     className="w-8 h-8 mb-3 object-contain"
                   />
-                  <p className="text-3xl font-bold text-primary">
+                  <p className="text-lg sm:text-2xl lg:text-3xl font-bold text-primary">
                     {statsData?.company_established || "2011"}
                   </p>
                   <p className="text-sm text-gray-600 mt-1">Established In</p>
@@ -131,14 +131,14 @@ const ExpertiseAchievements = () => {
               </div>
 
               {/* Satisfied Clients */}
-              <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+              <div className="bg-white border border-gray-200 rounded-lg p-3 sm:p-4 lg:p-6 shadow-sm hover:shadow-md transition-shadow">
                 <div className="flex flex-col items-center text-center">
                   <img
                     src="https://movesinternational.com.au/_next/image?url=%2Fhome%2Frate.png&w=64&q=75"
                     alt="Study International Logo"
                     className="w-8 h-8 mb-3 object-contain"
                   />
-                  <p className="text-3xl font-bold text-primary">
+                  <p className="text-lg sm:text-2xl lg:text-3xl font-bold text-primary">
                     {statsData?.satisfied_clients || "5k+"}+
                   </p>
                   <p className="text-sm text-gray-600 mt-1">
@@ -148,14 +148,14 @@ const ExpertiseAchievements = () => {
               </div>
 
               {/* University Partners */}
-              <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+              <div className="bg-white border border-gray-200 rounded-lg p-3 sm:p-4 lg:p-6 shadow-sm hover:shadow-md transition-shadow">
                 <div className="flex flex-col items-center text-center">
                   <img
                     src="https://movesinternational.com.au/_next/image?url=%2Fhome%2Fbussiness-man.png&w=64&q=75"
                     alt="Study International Logo"
                     className="w-8 h-8 mb-3 object-contain"
                   />
-                  <p className="text-3xl font-bold text-primary">
+                  <p className="text-lg sm:text-2xl lg:text-3xl font-bold text-primary">
                     {statsData?.university_partners || "50+"}+
                   </p>
                   <p className="text-sm text-gray-600 mt-1">
@@ -188,7 +188,7 @@ export const ExpertiseAchievements2 = () => {
           </div>
 
           {/* Right Column - Text Content */}
-          <div className="flex flex-col gap-[22px] self-start lg:py-[35.5px] lg:px-[50px]">
+          <div className="flex flex-col gap-[22px] self-start py-5 px-4 sm:py-6 sm:px-6 lg:py-[35.5px] lg:px-[50px]">
             <div className="flex items-center gap-3">
               <Flag className="w-6 h-6 text-green-400" />
               <span className="text-xl font-semibold text-primary">

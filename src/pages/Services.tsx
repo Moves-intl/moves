@@ -85,7 +85,7 @@ const Services = () => {
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[500px]">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center lg:min-h-[500px]">
             {/* Left Column - Text Content */}
             <div className="space-y-8 animate-fade-in">
               {/* Enhanced Modern Breadcrumb */}
@@ -107,7 +107,7 @@ const Services = () => {
                   Our Comprehensive Services
                 </div>
                 
-                <h1 className="text-5xl lg:text-7xl font-black leading-tight animate-fade-in">
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-7xl font-black leading-tight animate-fade-in">
                   <span className="block text-white drop-shadow-lg">
                     Expert
                   </span>
@@ -173,7 +173,7 @@ const Services = () => {
             {/* Enhanced Right Column - Modern Service Grid */}
             <div className="relative hidden lg:block animate-fade-in delay-700">
               {services.length > 0 && (
-                <div className="grid grid-cols-3 gap-4 w-full h-[400px]">
+                <div className="hidden lg:grid grid-cols-3 gap-4 w-full h-[400px]">
                   {[...Array(6)].map((_, index) => {
                     const serviceIndex = (currentLogoIndex + index) % services.length;
                     const service = services[serviceIndex];

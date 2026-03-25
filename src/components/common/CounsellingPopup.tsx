@@ -42,7 +42,7 @@ const CounsellingPopup = () => {
           <X className="w-5 h-5 text-gray-600 group-hover:text-gray-800 transition-colors" />
         </button>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[500px] max-h-[80vh]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 lg:min-h-[500px] max-h-[80vh]">
           {/* Left Column - Hero Content */}
           <div className="hidden lg:flex relative bg-gradient-to-br from-[#023047] via-[#034a6b] to-[#023047] p-6 lg:p-8 flex-col justify-center overflow-hidden">
             {/* Animated Background Elements */}
@@ -123,7 +123,7 @@ const CounsellingPopup = () => {
           </div>
 
           {/* Right Column - Form */}
-          <div className="p-6 lg:p-8 overflow-y-auto bg-white/80 backdrop-blur-sm">
+          <div className="p-5 sm:p-6 lg:p-8 overflow-y-auto bg-white/80 backdrop-blur-sm">
             <div className="mb-4">
               <h3 className="text-xl font-bold text-[#023047] mb-2">
                 Book Your Free Session

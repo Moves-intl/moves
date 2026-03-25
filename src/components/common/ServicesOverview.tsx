@@ -63,13 +63,13 @@ const ServicesOverview = () => {
   ];
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-10 sm:py-14 lg:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+        <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">
             Complete Education & Migration Services
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto">
             From initial consultation to post-arrival support, we provide end-to-end services 
             to make your international education journey smooth and successful.
           </p>
@@ -81,7 +81,7 @@ const ServicesOverview = () => {
             return (
               <div 
                 key={index}
-                className="group bg-white border border-gray-200 rounded-2xl p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                className="group bg-white border border-gray-200 rounded-2xl p-5 sm:p-6 lg:p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
               >
                 {/* Icon */}
                 <div className={`w-16 h-16 ${service.color} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
@@ -120,8 +120,8 @@ const ServicesOverview = () => {
         </div>
 
         {/* Bottom CTA */}
-        <div className="mt-16 text-center">
-          <div className="bg-gradient-to-r from-primary to-primary/90 rounded-2xl p-8 text-white">
+        <div className="mt-8 sm:mt-12 lg:mt-16 text-center">
+          <div className="bg-gradient-to-r from-primary to-primary/90 rounded-2xl p-5 sm:p-8 text-white">
             <h3 className="text-2xl font-bold mb-4">
               Ready to Start Your Journey?
             </h3>

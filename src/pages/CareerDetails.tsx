@@ -105,7 +105,7 @@ const CareerDetails = () => {
               )}
             </div>
             
-            <h1 className="text-4xl font-bold text-gray-900">{career.job_title}</h1>
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">{career.job_title}</h1>
             
             <div className="flex flex-wrap items-center gap-4 text-gray-600">
               <div className="flex items-center gap-2">

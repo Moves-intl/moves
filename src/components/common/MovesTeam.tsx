@@ -70,7 +70,7 @@ const LeadershipTeam = () => {
     <Link to={`/staff/${manager.id}`} key={manager.id}>
       <div className="group bg-white rounded-2xl border-gray-100 shadow-lg border-[1px] cursor-pointer hover:shadow-xl transition-all duration-300">
         <div className="relative overflow-hidden">
-          <div className="flex items-center justify-center w-[300px] h-[300px]">
+          <div className="flex items-center justify-center w-full h-[250px] sm:h-[300px]">
             <img
               src={manager.image}
               alt={manager.alt}
@@ -92,7 +92,7 @@ const LeadershipTeam = () => {
     <Link to={`/staff/${supervisor.id}`} key={supervisor.id}>
       <div className="group bg-white rounded-2xl border-gray-100 shadow-lg border-[1px] cursor-pointer hover:shadow-xl transition-all duration-300">
         <div className="relative overflow-hidden">
-          <div className="flex items-center justify-center w-[300px] h-[300px]">
+          <div className="flex items-center justify-center w-full h-[250px] sm:h-[300px]">
             <img
               src={supervisor.image}
               alt={supervisor.alt}
@@ -159,8 +159,8 @@ const LeadershipTeam = () => {
 
         {/* Managers Section */}
         {managers.length > 0 && (
-          <div className="mb-16">
-            <h5 className="text-4xl font-bold text-primary mb-8 text-center">
+          <div className="mb-10 sm:mb-14 lg:mb-16">
+            <h5 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary mb-5 sm:mb-8 text-center">
               Our Managers
             </h5>
             <div className="grid sm:max-w-[630px] mx-auto grid-cols-1 sm:grid-cols-2 gap-[30px]">
@@ -171,8 +171,8 @@ const LeadershipTeam = () => {
 
         {/* Supervisors Section */}
         {supervisors.length > 0 && (
-          <div className="mb-16">
-            <h5 className="text-4xl font-bold text-primary mb-8 text-center">
+          <div className="mb-10 sm:mb-14 lg:mb-16">
+            <h5 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary mb-5 sm:mb-8 text-center">
               Our Supervisors
             </h5>
             <div className="grid sm:max-w-[630px] mx-auto grid-cols-1 sm:grid-cols-2 gap-[30px]">
@@ -183,8 +183,8 @@ const LeadershipTeam = () => {
 
         {/* Counselors Section */}
         {counselors.length > 0 && (
-          <div className="mb-16">
-            <h5 className="text-4xl font-bold text-primary mb-8 text-center">
+          <div className="mb-10 sm:mb-14 lg:mb-16">
+            <h5 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary mb-5 sm:mb-8 text-center">
               Our Counselors
             </h5>
             <div className="grid lg:max-w-[960px] mx-auto grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[30px]">
@@ -195,8 +195,8 @@ const LeadershipTeam = () => {
 
         {/* Team Members Section */}
         {teamMembers.length > 0 && (
-          <div className="mb-16">
-            <h5 className="text-4xl font-bold text-primary mb-8 text-center">
+          <div className="mb-10 sm:mb-14 lg:mb-16">
+            <h5 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary mb-5 sm:mb-8 text-center">
               Team Members
             </h5>
             <div className="grid md:grid-cols-4 gap-8 max-w-7xl mx-auto">

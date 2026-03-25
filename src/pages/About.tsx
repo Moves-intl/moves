@@ -69,7 +69,7 @@ const About = () => {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
           {/* Main Hero Content */}
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[500px] py-0">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center lg:min-h-[500px] py-6 lg:py-0">
             {/* Left Column - Text Content */}
             <div className="space-y-6 animate-fade-in">
               {/* Enhanced Modern Breadcrumb */}
@@ -91,7 +91,7 @@ const About = () => {
                   Trusted Education Partners
                 </div>
 
-                <h1 className="text-5xl lg:text-7xl font-black leading-tight animate-fade-in">
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-7xl font-black leading-tight animate-fade-in">
                   <span className="block text-white drop-shadow-lg">
                     Best Migration
                   </span>
@@ -187,7 +187,7 @@ const About = () => {
       <CEOMsg />
 
       <div className="text-center mb-6">
-        <h2 className="text-5xl font-bold text-primary mb-3">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-primary mb-3">
           {aboutPageData?.content?.includes('team_title') ?
             JSON.parse(aboutPageData.content).team_title :
             "Moves International's Team"}

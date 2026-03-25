@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function ThreeCardLayout() {
   return (
-    <div className="flex flex-col md:flex-row gap-6 p-8 max-w-6xl mx-auto">
+    <div className="flex flex-col md:flex-row gap-6 p-4 sm:p-6 lg:p-8 max-w-6xl mx-auto">
       {/* Year 12 Card */}
       <div className="bg-gray-50 rounded-lg p-6 flex-1 text-center">
         <div className="w-32 h-32 bg-purple-200 rounded-lg mx-auto mb-4 flex items-center justify-center">

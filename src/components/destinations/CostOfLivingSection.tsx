@@ -34,7 +34,7 @@ const CostOfLivingSection = ({ destination }: CostOfLivingSectionProps) => {
   if (costItems.length === 0) return null;
 
   return (
-    <section className="py-20 px-4 bg-white relative overflow-hidden">
+    <section className="py-10 sm:py-14 lg:py-20 px-4 bg-white relative overflow-hidden">
       {/* Floating background elements */}
       <div className="absolute top-10 right-10 w-40 h-40 bg-gradient-to-br from-[#fa8500]/5 to-orange-300/5 rounded-full blur-3xl animate-pulse"></div>
       <div className="absolute bottom-20 left-20 w-32 h-32 bg-gradient-to-br from-[#023047]/5 to-blue-400/5 rounded-full blur-2xl"></div>
@@ -42,14 +42,14 @@ const CostOfLivingSection = ({ destination }: CostOfLivingSectionProps) => {
 
       <div className="relative max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-8 sm:mb-12 lg:mb-16">
           {/* Floating badge */}
           <div className="inline-flex items-start w-fit leading-tight bg-orange-100 text-orange-600 px-4 py-2 rounded-full text-sm font-medium mb-3">
             <Calculator className="w-4 h-4 mr-2" />
             Budget Planning
           </div>
           {/* Main title with modern typography */}
-          <h2 className="text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-primary mb-4 leading-tight">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-black text-transparent bg-clip-text bg-primary mb-4 leading-tight">
             Cost of Living
           </h2>
 
@@ -60,7 +60,7 @@ const CostOfLivingSection = ({ destination }: CostOfLivingSectionProps) => {
           </div>
 
           {/* Description */}
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
             Smart budgeting for your studies in{' '}
             <span className="font-bold text-[#023047] relative">
               {destination?.name}
@@ -83,7 +83,7 @@ const CostOfLivingSection = ({ destination }: CostOfLivingSectionProps) => {
                 <div className="absolute inset-0 bg-gradient-to-br from-[#fa8500]/20 to-[#023047]/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500 scale-105"></div>
 
                 {/* Main card */}
-                <div className="relative bg-gradient-to-br from-slate-50 via-white to-gray-50 rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-[#fa8500]/30 group-hover:scale-105 group-hover:-translate-y-2">
+                <div className="relative bg-gradient-to-br from-slate-50 via-white to-gray-50 rounded-3xl p-5 sm:p-6 lg:p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-[#fa8500]/30 group-hover:scale-105 group-hover:-translate-y-2">
 
                   {/* Icon section */}
                   <div className="relative mb-6">
@@ -124,7 +124,7 @@ const CostOfLivingSection = ({ destination }: CostOfLivingSectionProps) => {
         </div>
 
         {/* Bottom section */}
-        <div className="mt-20 text-center">
+        <div className="mt-10 sm:mt-14 lg:mt-20 text-center">
           <div className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-gray-50 to-white rounded-2xl border border-gray-200 shadow-sm">
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 bg-gradient-to-r from-green-400 to-emerald-400 rounded-full animate-pulse shadow-sm"></div>

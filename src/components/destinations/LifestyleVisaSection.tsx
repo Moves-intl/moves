@@ -45,18 +45,18 @@ const LifestyleVisaSection = ({ destination = {} }: { destination?: any }) => {
   );
 
   return (
-    <section className="py-16 px-6 ">
+    <section className="py-10 sm:py-14 lg:py-16 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-8 sm:mb-12 lg:mb-16">
           <div className="inline-flex items-start w-fit leading-tight bg-orange-100 text-orange-600 px-4 py-2 rounded-full text-sm font-medium mb-3">
         <TrendingUp className="w-4 h-4 mr-2" />
         Essential Information
       </div>
-          <h2 className="text-4xl md:text-5xl font-bold bg-primary bg-clip-text text-transparent mb-4">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold bg-primary bg-clip-text text-transparent mb-3 sm:mb-4">
             Your Journey Awaits
           </h2> 
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
             Discover everything you need to know about living and traveling in your dream destination
           </p>
         </div>
@@ -90,7 +90,7 @@ const LifestyleVisaSection = ({ destination = {} }: { destination?: any }) => {
                 <div className="absolute -bottom-10 -left-10 w-24 h-24 bg-gradient-to-tr from-[#023047]/10 to-transparent rounded-full blur-lg group-hover:scale-125 transition-transform duration-700"></div>
                 
                 {/* Content */}
-                <div className="relative bg-white/90 backdrop-blur-sm border border-white/20 rounded-3xl p-8 h-full">
+                <div className="relative bg-white/90 backdrop-blur-sm border border-white/20 rounded-3xl p-5 sm:p-6 lg:p-8 h-full">
                   {/* Header */}
                   <div className="mb-8">
                     <div className="flex items-center justify-between mb-6">

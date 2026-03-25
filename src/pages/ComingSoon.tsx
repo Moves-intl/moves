@@ -92,7 +92,7 @@ const ComingSoon = () => {
               <Sparkles className="h-12 w-12 text-purple-400 mr-4 animate-pulse" />
               <div className="absolute -top-1 -right-1 w-3 h-3 bg-purple-400 rounded-full animate-ping"></div>
             </div>
-            <h1 className="text-5xl md:text-8xl font-bold text-white tracking-tight bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-bold text-white tracking-tight bg-gradient-to-r from-white via-white/90 to-white/80 bg-clip-text">
               Coming Soon
             </h1>
             <div className="relative">
@@ -106,10 +106,10 @@ const ComingSoon = () => {
         </div>
 
         {/* Enhanced Countdown Timer */}
-        <div className="mb-16 animate-scale-in">
+        <div className="mb-10 sm:mb-16 animate-scale-in">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
             {Object.entries(timeLeft).map(([unit, value], index) => (
-              <Card key={unit} className="glass border-white/30 p-8 text-center hover-scale relative group">
+              <Card key={unit} className="glass border-white/30 p-4 sm:p-8 text-center hover-scale relative group">
                 <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent rounded-lg"></div>
                 <div className="relative z-10">
                   <div className="text-4xl md:text-6xl font-bold text-white mb-3 group-hover:text-purple-400 transition-colors duration-300">
@@ -129,7 +129,7 @@ const ComingSoon = () => {
         </div>
 
         {/* Enhanced Email Subscription */}
-        <div className="mb-16 w-full max-w-lg animate-fade-in delay-300">
+        <div className="mb-10 sm:mb-16 w-full max-w-lg animate-fade-in delay-300">
           {!isSubscribed ? (
             <form onSubmit={handleSubscribe} className="space-y-6">
               <div className="text-white mb-6">
@@ -161,7 +161,7 @@ const ComingSoon = () => {
               </div>
             </form>
           ) : (
-            <div className="bg-green-500/20 border border-green-400/40 rounded-xl p-8 text-white backdrop-blur-sm animate-scale-in">
+            <div className="bg-green-500/20 border border-green-400/40 rounded-xl p-5 sm:p-8 text-white backdrop-blur-sm animate-scale-in">
               <div className="flex items-center justify-center mb-4">
                 <div className="relative">
                   <Mail className="h-8 w-8 mr-3 text-green-400" />
@@ -175,8 +175,8 @@ const ComingSoon = () => {
         </div>
 
         {/* Enhanced Feature Preview */}
-        <div className="mb-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl animate-fade-in delay-500">
-          <Card className="glass border-white/30 p-8 text-center hover-scale group relative">
+        <div className="mb-10 sm:mb-16 grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-8 max-w-6xl animate-fade-in delay-500">
+          <Card className="glass border-white/30 p-5 sm:p-8 text-center hover-scale group relative">
             <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <div className="relative z-10">
               <Globe className="h-16 w-16 text-purple-400 mx-auto mb-6 group-hover:scale-110 transition-transform duration-300" />
@@ -184,7 +184,7 @@ const ComingSoon = () => {
               <p className="text-white/80 leading-relaxed">Connect with prestigious institutions and opportunities worldwide</p>
             </div>
           </Card>
-          <Card className="glass border-white/30 p-8 text-center hover-scale group relative">
+          <Card className="glass border-white/30 p-5 sm:p-8 text-center hover-scale group relative">
             <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <div className="relative z-10">
               <BookOpen className="h-16 w-16 text-purple-400 mx-auto mb-6 group-hover:scale-110 transition-transform duration-300" />
@@ -192,7 +192,7 @@ const ComingSoon = () => {
               <p className="text-white/80 leading-relaxed">Personalized counseling from certified education experts</p>
             </div>
           </Card>
-          <Card className="glass border-white/30 p-8 text-center hover-scale group relative">
+          <Card className="glass border-white/30 p-5 sm:p-8 text-center hover-scale group relative">
             <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <div className="relative z-10">
               <Sparkles className="h-16 w-16 text-purple-400 mx-auto mb-6 group-hover:scale-110 transition-transform duration-300" />

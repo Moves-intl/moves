@@ -168,10 +168,10 @@ const CountryCards = () => {
               <Plane className="w-4 h-4 mr-2" />
               Explore Countries
             </div>
-            <h2 className="text-4xl font-bold text-primary mb-3">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary mb-3">
               Choose Your Study Destination
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-6">
+            <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto mb-6">
               Loading destinations...
             </p>
             <div className="flex justify-center">
@@ -192,10 +192,10 @@ const CountryCards = () => {
               <Plane className="w-4 h-4 mr-2" />
               Explore Countries
             </div>
-            <h2 className="text-4xl font-bold text-primary mb-4">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary mb-4">
               Choose Your Study Destination
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto">
               No destinations available at the moment.
             </p>
           </div>
@@ -213,10 +213,10 @@ const CountryCards = () => {
             <Plane className="w-4 h-4 mr-2" />
             Explore Countries
           </div>
-          <h2 className="text-4xl font-bold text-primary mb-3">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary mb-3">
             Choose Your Study Destination
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto">
             Explore top study destinations with excellent education systems,
             work opportunities, and pathways to permanent residency.
           </p>
@@ -225,7 +225,7 @@ const CountryCards = () => {
         {/* Carousel Container - Similar to Projects component */}
         <div className="relative max-w-6xl mx-auto">
           <div
-            className="relative h-[450px] overflow-hidden"
+            className="relative min-h-[420px] sm:h-[450px] overflow-hidden"
             onMouseEnter={() => setIsHovering(true)}
             onMouseLeave={() => setIsHovering(false)}
           >
@@ -250,7 +250,7 @@ const CountryCards = () => {
                     )}`}
                     style={{ transitionDelay: `${index * 50}ms` }}
                   >
-                    <div className="bg-white rounded-2xl shadow-lg overflow-hidden h-[400px] w-[400px] mx-auto border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+                    <div className="bg-white rounded-2xl shadow-lg overflow-hidden h-auto w-full max-w-[340px] sm:max-w-[400px] mx-auto border border-gray-100 hover:shadow-xl transition-shadow duration-300">
                       {/* Header with gradient */}
                       <div
                         className={`bg-gradient-to-r ${config.gradient} p-6 text-white relative overflow-hidden`}
@@ -380,7 +380,7 @@ const CountryCards = () => {
 
         {/* CTA Section */}
         <div className="text-center mt-16">
-          <div className="bg-primary rounded-2xl p-8 text-white">
+          <div className="bg-primary rounded-2xl p-5 sm:p-8 text-white">
             <h3 className="text-2xl font-bold mb-4">
               Not sure which destination is right for you?
             </h3>

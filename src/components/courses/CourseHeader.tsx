@@ -81,7 +81,7 @@ export const CourseHeader = ({
                 <span className="text-white font-medium text-sm">Discover Excellence</span>
               </div>
             
-              <h1 className="text-5xl lg:text-7xl font-black text-white mb-4 leading-tight animate-fade-in">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-7xl font-black text-white mb-4 leading-tight animate-fade-in">
                 Find Your
                   <span className="block bg-gradient-to-r from-accent via-orange-400 to-yellow-400 bg-clip-text text-transparent drop-shadow-lg">
                   Perfect Course</span>

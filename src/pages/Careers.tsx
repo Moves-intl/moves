@@ -115,13 +115,13 @@ const Careers = () => {
         <div className="container mx-auto px-4 py-16 relative">
           <div className="max-w-6xl mx-auto">
             {/* Hero Header */}
-            <div className="text-center mb-16">
+            <div className="text-center mb-8 sm:mb-12 lg:mb-16">
               <div className="inline-flex items-center gap-2 bg-gradient-to-r from-primary/10 to-primary/20 px-4 py-2 rounded-full text-sm font-medium text-primary mb-6">
                 <span className="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
                 Join Our Growing Team
               </div>
               
-              <h1 className="text-5xl lg:text-7xl font-black leading-tight mb-6">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-7xl font-black leading-tight mb-6">
                 <span className="block bg-gradient-to-r from-foreground via-foreground to-primary/80 bg-clip-text text-transparent">
                   Build Your
                 </span>
@@ -291,7 +291,7 @@ const Careers = () => {
                 <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/20 to-transparent rounded-full blur-3xl"></div>
                 <div className="absolute bottom-0 left-0 w-40 h-40 bg-gradient-to-tr from-accent/20 to-transparent rounded-full blur-3xl"></div>
                 
-                <CardContent className="p-12 relative">
+                <CardContent className="p-6 sm:p-8 lg:p-12 relative">
                   <div className="w-20 h-20 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-lg">
                     <Building2 className="h-10 w-10 text-white" />
                   </div>

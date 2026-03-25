@@ -123,15 +123,15 @@ export default function HowToApply() {
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 sm:mb-14 lg:mb-16">
       <div className="inline-flex items-start w-fit leading-tight bg-orange-100 text-orange-600 px-4 py-2 rounded-full text-sm font-medium mb-3">
             <Rocket className="w-4 h-4 mr-2" /> 
             Get Started
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold bg-primary bg-clip-text text-transparent mb-6">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-primary bg-clip-text text-transparent mb-4 sm:mb-6">
             How It Works
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Find your perfect course in just 4 simple steps and start your educational journey today
           </p>
         </div>

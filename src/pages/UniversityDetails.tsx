@@ -263,7 +263,7 @@ const UniversityDetails = () => {
 
                 {/* University Name & Details */}
                 <div className="space-y-4">
-                  <h1 className="text-4xl lg:text-6xl font-bold text-foreground leading-tight bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text">
+                  <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-6xl font-bold text-foreground leading-tight bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text">
                     {university.name}
                   </h1>
 

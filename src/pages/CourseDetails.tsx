@@ -135,7 +135,7 @@ const CourseDetails = () => {
               </div>
               
               {/* Course Title */}
-              <h1 className="text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 sm:mb-6 leading-tight">
                 {course.title}
               </h1>
               

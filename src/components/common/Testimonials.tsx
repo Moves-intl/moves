@@ -53,34 +53,34 @@ const Testimonials = () => {
   ];
 
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section className="py-12 sm:py-16 lg:py-24 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-gray-50 to-primary/5"></div>
       <div className="absolute top-1/4 left-0 w-72 h-72 bg-accent/10 rounded-full blur-3xl"></div>
       <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div className="text-center mb-20">
+        <div className="text-center mb-10 sm:mb-14 lg:mb-20">
           <div className="inline-flex items-center bg-green-500/10 text-green-600 px-4 py-2 rounded-full text-sm font-medium mb-6">
             <Star className="w-4 h-4 mr-2 fill-current" />
             Student Success Stories
           </div>
-          <h2 className="text-5xl font-bold text-gray-900 mb-6">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
             What Our Students
             <span className="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent"> Say About Us</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
             Hear from students who have successfully started their international education journey with our guidance. 
             Their success stories inspire us to continue delivering excellence.
           </p>
         </div>
 
         {/* Testimonials Grid */}
-        <div className="grid md:grid-cols-2 gap-8 mb-16">
+        <div className="grid md:grid-cols-2 gap-6 sm:gap-8 mb-10 sm:mb-14 lg:mb-16">
           {testimonials.map((testimonial) => (
             <div 
               key={testimonial.id}
-              className="group bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 relative border border-gray-100 hover:-translate-y-1"
+              className="group bg-white/90 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-500 relative border border-gray-100 hover:-translate-y-1"
             >
               {/* Quote Icon */}
               <div className="absolute -top-4 left-8">
@@ -102,7 +102,7 @@ const Testimonials = () => {
               </div>
 
               {/* Testimonial Text */}
-              <p className="text-gray-700 mb-8 leading-relaxed text-lg italic">
+              <p className="text-gray-700 mb-5 sm:mb-8 leading-relaxed text-sm sm:text-base lg:text-lg italic">
                 "{testimonial.text}"
               </p>
 
@@ -128,7 +128,7 @@ const Testimonials = () => {
 
         {/* Enhanced CTA Section */}
         <div className="text-center">
-          <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-12 shadow-xl border border-gray-200">
+          <div className="bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-12 shadow-xl border border-gray-200">
             <div className="flex justify-center items-center mb-6">
               <div className="flex -space-x-3">
                 {[1, 2, 3, 4, 5].map((i) => (
@@ -142,7 +142,7 @@ const Testimonials = () => {
               </div>
             </div>
             
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">
+            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">
               Join 10,000+ Successful Students
             </h3>
             <p className="text-gray-600 mb-8">

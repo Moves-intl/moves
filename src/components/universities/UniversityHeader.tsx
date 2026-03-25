@@ -78,7 +78,7 @@ export const UniversityHeader = ({
                 <span className="text-white font-medium text-sm">World-Class Excellence</span>
               </div>
               
-              <h1 className="text-5xl lg:text-7xl font-bold text-white mb-4 leading-tight">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-7xl font-bold text-white mb-4 leading-tight">
                 Discover Your
                 <span className="block text-[#fa8500] drop-shadow-lg">Dream University</span>
               </h1>

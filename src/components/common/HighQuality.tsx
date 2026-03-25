@@ -62,7 +62,7 @@ const HighQuality = () => {
               Rated 4.0 Stars
             </span>
 
-            <h2 className="text-3xl ml-4 lg:text-4xl  font-bold text-primary">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary">
               <span className="bg-gradient-to-r from-primary to-orange-600 bg-clip-text text-transparent">
                 What Our Students
               </span>
@@ -72,12 +72,12 @@ const HighQuality = () => {
               </span>
             </h2>
 
-            <p className="text-gray-700 ml-4 text-lg leading-relaxed max-w-md">
+            <p className="text-gray-700 text-base sm:text-lg leading-relaxed max-w-md">
               Advanced services combined with a large experience and fast
               performance.
             </p>
 
-            <button className="text-primary ml-4 hover:text-orange-600 font-light text-sm flex items-center gap-1  group">
+            <button className="text-primary hover:text-orange-600 font-light text-sm flex items-center gap-1  group">
               <span className="w-6 h-6 rounded-full flex items-center justify-center mr-0 ">
                 <ShieldCheck className="w-4 h-4 text-orange-500 mb-0.5 mr-0" />
               </span>

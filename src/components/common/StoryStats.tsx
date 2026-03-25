@@ -83,7 +83,7 @@ const StoryWithStatsSection = () => {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-[60%_40%] gap-12 items-start">
           {/* Left Column - Our Story */}
-          <div className="sticky top-24 self-start flex flex-col gap-6 border border-dashed px-8 py-10 rounded-lg bg-gray-50">
+          <div className="sticky top-24 self-start flex flex-col gap-6 border border-dashed px-4 py-6 sm:px-8 sm:py-10 rounded-lg bg-gray-50">
             <div className="flex items-center gap-3">
               <Flag className="w-6 h-6 text-green-500" />
               <span className="text-xl font-semibold text-primary">

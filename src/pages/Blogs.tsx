@@ -352,7 +352,7 @@ const Blogs = () => {
 
             {/* Main Headlines */}
             <div className="text-center space-y-6 mb-12">
-              <h1 className="text-6xl lg:text-7xl xl:text-8xl font-bold leading-none">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight sm:leading-none">
                 <span className="text-foreground">Stories </span>
                 <span className="text-transparent bg-gradient-to-r from-primary via-accent to-primary bg-clip-text animate-pulse">
                   Worth

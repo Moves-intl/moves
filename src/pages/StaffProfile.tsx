@@ -150,7 +150,7 @@ const StaffProfile = () => {
             </div>
 
             <div className="flex-1">
-              <h1 className="text-4xl font-bold mb-2">{staffMember.name}</h1>
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2">{staffMember.name}</h1>
               <Badge variant="secondary" className="mb-4 text-lg px-4 py-2">
                 {staffMember.designation}
               </Badge>

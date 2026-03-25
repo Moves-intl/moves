@@ -74,37 +74,37 @@ const Reviews = () => {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="relative py-24 bg-[#fcfcfc] overflow-hidden">
+      <section className="relative py-12 sm:py-16 lg:py-24 bg-[#fcfcfc] overflow-hidden">
 
         <div className="relative max-w-7xl mx-auto px-4 text-center">
           <div className="inline-flex items-start w-fit leading-tight bg-orange-100 text-orange-600 px-4 py-2 rounded-full text-sm font-medium mb-3">
             <User2 className="w-4 h-4 mr-2" />
             Student Testimonials
           </div>
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-primary bg-clip-text text-transparent">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-4 sm:mb-6 bg-primary bg-clip-text text-transparent">
             What Our Students Say
           </h1>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg lg:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
             Discover genuine stories from students who achieved their study abroad dreams with our guidance and support.
           </p>
         </div>
       </section>
 
       {/* Reviews Section */}
-      <section className="py-24 bg-white">
+      <section className="py-12 sm:py-16 lg:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           {/* Stats */}
-          <div className="grid md:grid-cols-3 gap-8 mb-20">
+          <div className="grid md:grid-cols-3 gap-6 sm:gap-8 mb-10 sm:mb-14 lg:mb-20">
             <div className="text-center">
-              <div className="text-4xl font-bold text-primary mb-2">{totalReviews}+</div>
+              <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary mb-2">{totalReviews}+</div>
               <div className="text-slate-600">Happy Students</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-primary mb-2">{averageRating}/5</div>
+              <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary mb-2">{averageRating}/5</div>
               <div className="text-slate-600">Average Rating</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-primary mb-2">95%</div>
+              <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary mb-2">95%</div>
               <div className="text-slate-600">Success Rate</div>
             </div>
           </div>
@@ -127,8 +127,8 @@ const Reviews = () => {
           </div>
 
           {/* Call to Action */}
-          <div className="text-center mt-20">
-            <div className="bg-primary rounded-2xl p-8 text-white">
+          <div className="text-center mt-10 sm:mt-14 lg:mt-20">
+            <div className="bg-primary rounded-2xl p-5 sm:p-8 text-white">
               <h3 className="text-2xl font-bold mb-4">
                 Ready to Start Your Journey?
               </h3>

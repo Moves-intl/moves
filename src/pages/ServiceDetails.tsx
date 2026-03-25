@@ -64,7 +64,7 @@ const ServiceDetails = () => {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
           {/* Main Hero Content */}
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[400px] py-8">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center lg:min-h-[400px] py-8">
             {/* Left Column - Text Content */}
 
             {/* Breadcrumb-style navigation */}
@@ -88,7 +88,7 @@ const ServiceDetails = () => {
                   <span className="w-2 h-2 bg-accent rounded-full animate-pulse"></span>
                   Our Comprehensive Services
                 </div>
-                <h1 className="text-5xl  lg:text-7xl font-black leading-tight animate-fade-in">
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-7xl font-black leading-tight animate-fade-in">
                   {service.title.split(' ')[0] && (
                     <span className="block text-white drop-shadow-lg">
                       {service.title.split(' ')[0]}

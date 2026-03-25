@@ -21,7 +21,7 @@ const CookiePolicy = () => {
             
             <div className="flex items-center gap-3 mb-6">
               <Cookie className="h-8 w-8 text-primary" />
-              <h1 className="text-4xl font-bold">Cookie Policy</h1>
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold">Cookie Policy</h1>
             </div>
             
             <p className="text-xl text-muted-foreground">
@@ -36,7 +36,7 @@ const CookiePolicy = () => {
         <div className="max-w-4xl mx-auto space-y-8">
           {/* Policy Content */}
           <Card>
-            <CardContent className="p-8 prose prose-lg max-w-none">
+            <CardContent className="p-4 sm:p-6 lg:p-8 prose prose-lg max-w-none">
               <h2>What are cookies?</h2>
               <p>
                 Cookies are small text files that are placed on your computer or mobile device when you visit a website. 

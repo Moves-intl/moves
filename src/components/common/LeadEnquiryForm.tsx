@@ -46,7 +46,7 @@ const LeadEnquiryForm = () => {
   }, []);
 
   return (
-    <section className=" py-20 min-h-screen">
+    <section className="py-10 sm:py-16 lg:py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 grid lg:grid-cols-2 gap-12 relative">
         {/* Left Column */}
         <div className="space-y-6 lg:sticky lg:top-[-35px] lg:self-start">

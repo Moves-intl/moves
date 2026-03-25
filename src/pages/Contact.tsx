@@ -86,7 +86,7 @@ const Contact = () => {
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full ">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-16 items-center">
             {/* Left Side - Enhanced Text Content */}
             <div className="text-white space-y-8 animate-fade-in">
               <div className="space-y-6">
@@ -95,7 +95,7 @@ const Contact = () => {
                   <span className="text-sm font-medium">Available 24/7</span>
                 </div>
 
-                <h1 className="text-6xl lg:text-8xl font-black leading-tight">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-8xl font-black leading-tight">
                   <span className="block text-white drop-shadow-lg">
                     Let's Talk
                   </span>
@@ -186,11 +186,11 @@ const Contact = () => {
         </div>
       </section>
       {/* Floating Office Cards Section */}
-      <div className="relative py-32">
+      <div className="relative py-12 sm:py-16 lg:py-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
-          <div className="text-center mb-20">
-            <h2 className="text-6xl font-black text-foreground mb-6">
+          <div className="text-center mb-10 sm:mb-14 lg:mb-20">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-6xl font-black text-foreground mb-4 sm:mb-6">
               <span className="">Our Offices</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -200,9 +200,9 @@ const Contact = () => {
           </div>
 
           {/* Main Office - Nepal */}
-          <div className="mb-20">
+          <div className="mb-10 sm:mb-14 lg:mb-20">
             <div className="relative max-w-4xl mx-auto">
-              <div className="relative backdrop-blur-xl rounded-3xl p-12 border border-border shadow-elegant bg-background">
+              <div className="relative backdrop-blur-xl rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-12 border border-border shadow-elegant bg-background">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                   <div>
                     <div className="flex items-center gap-4 mb-6">
@@ -342,10 +342,10 @@ const Contact = () => {
       </div>
 
       {/* Interactive Map Section */}
-      <div className="relative py-20">
+      <div className="relative py-10 sm:py-14 lg:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-5xl font-black text-foreground mb-6">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-black text-foreground mb-4 sm:mb-6">
               Find Us
             </h2>
           </div>

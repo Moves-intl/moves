@@ -13,7 +13,7 @@ const MegaMenuContainer: React.FC<MegaMenuContainerProps> = ({
 }) => {
   return (
     <div
-      className={`fixed left-1/2 -translate-x-1/2 w-screen max-w-6xl bg-card rounded-xl shadow-elegant border border-border z-[9999] transition-all duration-300 backdrop-blur-sm ${
+      className={`fixed left-1/2 -translate-x-1/2 w-[calc(100vw-2rem)] max-w-6xl bg-card rounded-xl shadow-elegant border border-border z-[9999] transition-all duration-300 backdrop-blur-sm overflow-hidden ${
         isOpen 
           ? 'opacity-100 translate-y-0 visible' 
           : 'opacity-0 -translate-y-4 invisible pointer-events-none'

@@ -17,7 +17,7 @@ const JobMarketSection = ({ destination, jobMarketPoints }: JobMarketSectionProp
   const iconVariants = [Briefcase, Building, DollarSign, Rocket, Globe, Users];
 
   return (
-    <section className="py-24 px-4 relative overflow-hidden">
+    <section className="py-12 sm:py-16 lg:py-24 px-4 relative overflow-hidden">
       {/* Enhanced Background Effects */}
       <div className="absolute inset-0">
         <div className="absolute top-20 right-16 w-64 h-64 bg-gradient-to-br from-[#fa8500]/12 to-orange-300/8 rounded-full blur-3xl animate-pulse"></div>
@@ -33,7 +33,7 @@ const JobMarketSection = ({ destination, jobMarketPoints }: JobMarketSectionProp
 
       <div className="relative max-w-7xl mx-auto">
         {/* Enhanced Header */}
-        <div className={`text-center mb-20 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+        <div className={`text-center mb-10 sm:mb-14 lg:mb-20 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           {/* Enhanced Badge */}
           <div className="inline-flex items-start w-fit leading-tight bg-orange-100 text-orange-600 px-4 py-2 rounded-full text-sm font-medium mb-3">
                   <TrendingUp className="w-4 h-4 mr-2" />
@@ -41,7 +41,7 @@ const JobMarketSection = ({ destination, jobMarketPoints }: JobMarketSectionProp
                 </div>
 
           {/* Enhanced Title */}
-          <h2 className="text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-primary mb-6 leading-tight animate-pulse">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-black text-transparent bg-clip-text bg-primary mb-4 sm:mb-6 leading-tight animate-pulse">
             Job Market & Growth
           </h2>
 
@@ -53,7 +53,7 @@ const JobMarketSection = ({ destination, jobMarketPoints }: JobMarketSectionProp
           </div>
 
           {/* Enhanced Description */}
-          <p className="text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed mb-8">
+          <p className="text-base sm:text-lg lg:text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed mb-6 sm:mb-8">
             Unlock exceptional career opportunities in{' '}
             <span className="font-black text-transparent bg-clip-text bg-gradient-to-r from-[#023047] to-[#fa8500] relative">
               {destination?.name}
@@ -83,11 +83,11 @@ const JobMarketSection = ({ destination, jobMarketPoints }: JobMarketSectionProp
         <div className="max-w-6xl mx-auto">
           <div className="relative">
             {/* Enhanced timeline line with gradient animation */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-[#fa8500] via-[#023047] via-purple-500 to-[#fa8500] rounded-full shadow-lg">
+            <div className="hidden lg:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-[#fa8500] via-[#023047] via-purple-500 to-[#fa8500] rounded-full shadow-lg">
               <div className="absolute inset-0 bg-gradient-to-b from-orange-400 via-blue-400 via-purple-400 to-orange-400 rounded-full animate-pulse opacity-60"></div>
             </div>
             
-            <div className="space-y-20">
+            <div className="space-y-6 sm:space-y-10 lg:space-y-20">
               {jobMarketPoints.map((point, index) => {
                 const IconComponent = iconVariants[index % iconVariants.length];
                 const isLeft = index % 2 === 0;
@@ -96,7 +96,7 @@ const JobMarketSection = ({ destination, jobMarketPoints }: JobMarketSectionProp
                 return (
                   <div
                     key={index}
-                    className={`group relative flex items-center transition-all duration-700 ${
+                    className={`group relative flex items-center transition-all duration-700 justify-center lg:${
                       isLeft ? 'justify-start' : 'justify-end'
                     } ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
                     style={{ transitionDelay: `${index * 200}ms` }}
@@ -104,7 +104,7 @@ const JobMarketSection = ({ destination, jobMarketPoints }: JobMarketSectionProp
                     onMouseLeave={() => setActiveCard(null)}
                   >
                     {/* Enhanced timeline node */}
-                    <div className="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-gradient-to-br from-[#fa8500] to-orange-400 rounded-full shadow-xl flex items-center justify-center z-20 group-hover:scale-150 transition-all duration-500 border-4 border-white">
+                    <div className="hidden lg:flex absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-gradient-to-br from-[#fa8500] to-orange-400 rounded-full shadow-xl items-center justify-center z-20 group-hover:scale-150 transition-all duration-500 border-4 border-white">
                       <div className={`w-2 h-2 bg-white rounded-full transition-all duration-300 ${isActive ? 'animate-ping' : 'animate-pulse'}`}></div>
                       
                       {/* Ripple effect */}
@@ -112,13 +112,13 @@ const JobMarketSection = ({ destination, jobMarketPoints }: JobMarketSectionProp
                     </div>
 
                     {/* Enhanced content card */}
-                    <div className={`w-5/12 ${isLeft ? 'pr-20' : 'pl-20'}`}>
+                    <div className={`w-full lg:w-5/12 ${isLeft ? 'lg:pr-20' : 'lg:pl-20'} px-2 sm:px-4 lg:px-0`}>
                       <div className="group relative">
                         {/* Enhanced glowing background */}
                         <div className={`absolute inset-0 bg-gradient-to-br from-[#fa8500]/20 to-[#023047]/20 rounded-3xl blur-2xl transition-all duration-700 ${isActive ? 'opacity-100 scale-110' : 'opacity-0 scale-100'}`}></div>
                         
                         {/* Main enhanced card */}
-                        <div className={`relative bg-gradient-to-br from-white via-gray-50 to-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 border-2 ${isActive ? 'border-[#fa8500]/50 scale-105' : 'border-gray-100/50'} backdrop-blur-sm`}>
+                        <div className={`relative bg-gradient-to-br from-white via-gray-50 to-white rounded-3xl p-5 sm:p-6 lg:p-8 shadow-xl hover:shadow-2xl transition-all duration-500 border-2 ${isActive ? 'border-[#fa8500]/50 scale-105' : 'border-gray-100/50'} backdrop-blur-sm`}>
                           
                           {/* Enhanced card number */}
                           <div className="absolute -top-4 -right-4 w-10 h-10 bg-gradient-to-br from-[#023047] to-[#034663] rounded-full flex items-center justify-center shadow-xl border-2 border-white">
@@ -151,7 +151,7 @@ const JobMarketSection = ({ destination, jobMarketPoints }: JobMarketSectionProp
                           </div>
 
                           {/* Enhanced arrow */}
-                          <div className={`absolute top-1/2 transform -translate-y-1/2 ${
+                          <div className={`hidden lg:block absolute top-1/2 transform -translate-y-1/2 ${
                             isLeft ? 'right-0 translate-x-full' : 'left-0 -translate-x-full'
                           }`}>
                             <div className={`w-0 h-0 border-t-[12px] border-b-[12px] border-transparent transition-all duration-300 ${
@@ -171,8 +171,8 @@ const JobMarketSection = ({ destination, jobMarketPoints }: JobMarketSectionProp
         </div>
 
         {/* Enhanced Bottom Stats */}
-        <div className={`mt-24 text-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{transitionDelay: '800ms'}}>
-          <div className="max-w-4xl mx-auto bg-gradient-to-r from-white via-orange-50/50 to-white backdrop-blur-sm rounded-3xl border border-orange-200/50 shadow-2xl p-8">
+        <div className={`mt-12 sm:mt-16 lg:mt-24 text-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{transitionDelay: '800ms'}}>
+          <div className="max-w-4xl mx-auto bg-gradient-to-r from-white via-orange-50/50 to-white backdrop-blur-sm rounded-3xl border border-orange-200/50 shadow-2xl p-5 sm:p-6 lg:p-8">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               
               <div className="group flex flex-col items-center gap-3 hover:scale-105 transition-transform duration-300">

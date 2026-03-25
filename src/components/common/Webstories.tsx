@@ -140,7 +140,7 @@ const Webstories = () => {
           <BookImage className="w-4 h-4 mr-2" />
           Our Stories
         </div>
-        <h2 className="text-4xl font-bold text-primary">Web Stories</h2>
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary">Web Stories</h2>
         <p className="text-gray-600 mt-2">Explore Visual Stories</p>
       </div>
 

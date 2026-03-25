@@ -23,7 +23,7 @@ export default function Services() {
           </div>
 
           {/* Right Container - Content */}
-          <div className="w-full lg:w-3/5 space-y-8">
+          <div className="w-full lg:w-3/5 space-y-6 sm:space-y-8">
             {/* Header section */}
             <div className="space-y-6">
               {/* Badge */}
@@ -35,7 +35,7 @@ export default function Services() {
               </div>
 
               {/* Main heading */}
-              <h2 className="text-4xl lg:text-5xl font-bold text-[#023047]-900 leading-tight">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#023047]-900 leading-tight">
                 Best{" "}
                 <span className="relative text-[#fa8500]">
                   guidance
@@ -59,7 +59,7 @@ export default function Services() {
               </h2>
 
               {/* Description */}
-              <p className="text-gray-600 text-lg leading-relaxed max-w-xl">
+              <p className="text-gray-600 text-base sm:text-lg leading-relaxed max-w-xl">
                 Whether you need help with an English test application or your
                 first student research, our expert consultants are here to guide
                 you.

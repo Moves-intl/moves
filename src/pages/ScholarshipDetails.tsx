@@ -103,7 +103,7 @@ const ScholarshipDetails = () => {
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[500px]">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center lg:min-h-[500px]">
             {/* Left Column - Scholarship Content */}
             <div className="space-y-8 pt-0 animate-fade-in">
               {/* Modern Breadcrumb */}
@@ -143,7 +143,7 @@ const ScholarshipDetails = () => {
                 </div>
 
                 {/* Title */}
-                <h1 className="text-4xl lg:text-6xl font-black leading-tight">
+                <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-6xl font-black leading-tight">
                   <span className="block text-white drop-shadow-lg">
                     {scholarship.title}
                   </span>
