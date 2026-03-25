@@ -55,6 +55,12 @@ const Blogs = () => {
 
       if (categoriesError) throw categoriesError;
 
+      // Get exact total count of all published blogs
+      const { count: totalCount } = await supabase
+        .from("blogs")
+        .select("*", { count: "exact", head: true })
+        .eq("published", true);
+
       // Build blogs query with optimizations
       let blogsQuery = supabase
         .from("blogs")
@@ -84,16 +90,16 @@ const Blogs = () => {
       }
 
       // Limit initial load for performance
-      blogsQuery = blogsQuery.limit(50);
+      blogsQuery = blogsQuery.limit(500);
 
-      const { data: blogs, error: blogsError, count } = await blogsQuery;
+      const { data: blogs, error: blogsError } = await blogsQuery;
 
       if (blogsError) throw blogsError;
 
       return {
         blogs: blogs || [],
         categories: categories || [],
-        total: count || 0,
+        total: totalCount || 0,
       };
     },
     staleTime: 5 * 60 * 1000, // Cache for 5 minutes
@@ -400,7 +406,7 @@ const Blogs = () => {
             <div className="flex flex-wrap justify-center gap-8 text-center">
               <div className="bg-card/50 backdrop-blur-sm rounded-xl px-6 py-4 border border-border/50">
                 <div className="text-2xl font-bold text-primary">
-                  {processedBlogs.length}
+                  {blogStats || processedBlogs.length}
                 </div>
                 <div className="text-sm text-muted-foreground">Articles</div>
               </div>

@@ -348,16 +348,7 @@ const BlogDetails = () => {
                         })}
                       </span>
                     </div>
-                    {readingTime > 0 && (
-                      <div className="flex items-center gap-2">
-                        <Clock className="h-4 w-4" />
-                        <span>{readingTime} min read</span>
-                      </div>
-                    )}
-                    <div className="flex items-center gap-2">
-                      <Eye className="h-4 w-4" />
-                      <span>1.2k views</span>
-                    </div>
+
                   </div>
                 </div>
               </div>
@@ -395,12 +386,7 @@ const BlogDetails = () => {
                       })}
                     </span>
                   </div>
-                  {readingTime > 0 && (
-                    <div className="flex items-center gap-2">
-                      <Clock className="h-4 w-4" />
-                      <span>{readingTime} min read</span>
-                    </div>
-                  )}
+
                 </div>
               </div>
             </div>
