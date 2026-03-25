@@ -33,9 +33,17 @@ import {
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 
+interface BlogCategory {
+  id: string;
+  name: string;
+  type?: string;
+}
+
 const Blogs = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const [selectedTopic, setSelectedTopic] = useState("all");
+  const [selectedCountry, setSelectedCountry] = useState("all");
   const [viewMode, setViewMode] = useState<"magazine" | "grid" | "list">(
     "magazine"
   );
@@ -45,7 +53,7 @@ const Blogs = () => {
 
   // Optimized single query to fetch all necessary data
   const { data: blogsData, isLoading: blogsLoading } = useQuery({
-    queryKey: ["blogs-data", selectedCategory, sortBy],
+    queryKey: ["blogs-data", selectedCategory, selectedTopic, selectedCountry, sortBy],
     queryFn: async () => {
       // Fetch categories first
       const { data: categories, error: categoriesError } = await supabase
@@ -76,11 +84,12 @@ const Blogs = () => {
         )
         .eq("published", true);
 
-      // Apply category filter at database level if specific category selected
-      if (selectedCategory !== "all") {
+      // Apply category filter - topic or country dropdown
+      const activeCategory = selectedTopic !== "all" ? selectedTopic : selectedCountry !== "all" ? selectedCountry : selectedCategory;
+      if (activeCategory !== "all") {
         blogsQuery = blogsQuery.eq(
           "blog_category_assignments.category_id",
-          selectedCategory
+          activeCategory
         );
       }
 
@@ -108,6 +117,10 @@ const Blogs = () => {
   const blogs = blogsData?.blogs || [];
   const categories = blogsData?.categories || [];
   const blogStats = blogsData?.total || 0;
+
+  // Group categories using the type column from DB
+  const countryCategories = (categories as BlogCategory[]).filter(cat => cat.type === 'country');
+  const topicCategories = (categories as BlogCategory[]).filter(cat => cat.type !== 'country');
 
   // Optimized filtering - only search filter applied client-side
   const processedBlogs = React.useMemo(() => {
@@ -445,16 +458,35 @@ const Blogs = () => {
               </div>
 
               <div className="flex items-center gap-4 flex-wrap">
+                {/* Topic Dropdown */}
                 <Select
-                  value={selectedCategory}
-                  onValueChange={setSelectedCategory}
+                  value={selectedTopic}
+                  onValueChange={(val) => { setSelectedTopic(val); setSelectedCountry("all"); }}
                 >
-                  <SelectTrigger className="w-48">
-                    <SelectValue placeholder="Category" />
+                  <SelectTrigger className="w-44">
+                    <SelectValue placeholder="All Topics" />
                   </SelectTrigger>
                   <SelectContent className="bg-background border">
-                    <SelectItem value="all">All Categories</SelectItem>
-                    {categories?.map((category) => (
+                    <SelectItem value="all">All Topics</SelectItem>
+                    {topicCategories.map((category) => (
+                      <SelectItem key={category.id} value={category.id}>
+                        {category.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+
+                {/* Country Dropdown */}
+                <Select
+                  value={selectedCountry}
+                  onValueChange={(val) => { setSelectedCountry(val); setSelectedTopic("all"); }}
+                >
+                  <SelectTrigger className="w-44">
+                    <SelectValue placeholder="All Countries" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-background border">
+                    <SelectItem value="all">All Countries</SelectItem>
+                    {countryCategories.map((category) => (
                       <SelectItem key={category.id} value={category.id}>
                         {category.name}
                       </SelectItem>

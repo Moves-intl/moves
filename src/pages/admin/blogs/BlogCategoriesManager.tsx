@@ -1,45 +1,58 @@
-
 import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Plus, Edit2, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 
+interface BlogCategory {
+  id: string;
+  name: string;
+  type: string;
+  created_at?: string;
+}
+
+interface CategoryFormData {
+  name: string;
+  type: string;
+}
+
 const BlogCategoriesManager = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [editingCategory, setEditingCategory] = useState<any>(null);
-  const [formData, setFormData] = useState({ name: '' });
+  const [editingCategory, setEditingCategory] = useState<BlogCategory | null>(null);
+  const [formData, setFormData] = useState<CategoryFormData>({ name: '', type: 'topic' });
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
   const { data: blogCategories = [], isLoading } = useQuery({
     queryKey: ['blog-categories'],
-    queryFn: async () => {
+    queryFn: async (): Promise<BlogCategory[]> => {
       const { data, error } = await supabase
         .from('blog_categories')
         .select('*')
         .order('name');
       if (error) throw error;
-      return data;
+      return (data || []) as BlogCategory[];
     }
   });
 
   const createMutation = useMutation({
-    mutationFn: async (data: { name: string }) => {
+    mutationFn: async (data: CategoryFormData) => {
       const { error } = await supabase
         .from('blog_categories')
-        .insert([data]);
+        .insert([{ name: data.name, type: data.type }]);
       if (error) throw error;
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['blog-categories'] });
       setIsDialogOpen(false);
-      setFormData({ name: '' });
+      setFormData({ name: '', type: 'topic' });
       toast({ title: "Success", description: "Blog category created successfully" });
     },
     onError: (error: any) => {
@@ -48,10 +61,10 @@ const BlogCategoriesManager = () => {
   });
 
   const updateMutation = useMutation({
-    mutationFn: async ({ id, data }: { id: string; data: { name: string } }) => {
+    mutationFn: async ({ id, data }: { id: string; data: CategoryFormData }) => {
       const { error } = await supabase
         .from('blog_categories')
-        .update(data)
+        .update({ name: data.name, type: data.type })
         .eq('id', id);
       if (error) throw error;
     },
@@ -59,7 +72,7 @@ const BlogCategoriesManager = () => {
       queryClient.invalidateQueries({ queryKey: ['blog-categories'] });
       setIsDialogOpen(false);
       setEditingCategory(null);
-      setFormData({ name: '' });
+      setFormData({ name: '', type: 'topic' });
       toast({ title: "Success", description: "Blog category updated successfully" });
     },
     onError: (error: any) => {
@@ -84,6 +97,9 @@ const BlogCategoriesManager = () => {
     }
   });
 
+  const countryCategories = blogCategories.filter((cat: BlogCategory) => cat.type === 'country');
+  const topicCategories = blogCategories.filter((cat: BlogCategory) => cat.type !== 'country');
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (editingCategory) {
@@ -93,9 +109,9 @@ const BlogCategoriesManager = () => {
     }
   };
 
-  const handleEdit = (category: any) => {
+  const handleEdit = (category: BlogCategory) => {
     setEditingCategory(category);
-    setFormData({ name: category.name });
+    setFormData({ name: category.name, type: category.type || 'topic' });
     setIsDialogOpen(true);
   };
 
@@ -113,7 +129,7 @@ const BlogCategoriesManager = () => {
           <DialogTrigger asChild>
             <Button onClick={() => {
               setEditingCategory(null);
-              setFormData({ name: '' });
+              setFormData({ name: '', type: 'topic' });
             }}>
               <Plus className="h-4 w-4 mr-2" />
               Add Category
@@ -133,6 +149,21 @@ const BlogCategoriesManager = () => {
                   required
                 />
               </div>
+              <div>
+                <Label htmlFor="type">Type</Label>
+                <Select
+                  value={formData.type}
+                  onValueChange={(value) => setFormData({ ...formData, type: value })}
+                >
+                  <SelectTrigger id="type">
+                    <SelectValue placeholder="Select type" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-background border">
+                    <SelectItem value="topic">Topic</SelectItem>
+                    <SelectItem value="country">Country</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
               <Button type="submit" disabled={createMutation.isPending || updateMutation.isPending}>
                 {editingCategory ? 'Update' : 'Create'}
               </Button>
@@ -141,27 +172,65 @@ const BlogCategoriesManager = () => {
         </Dialog>
       </div>
 
-      <div className="grid gap-4">
-        {isLoading ? (
-          <p>Loading...</p>
-        ) : (
-          blogCategories.map((category) => (
-            <Card key={category.id}>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-lg">{category.name}</CardTitle>
-                <div className="flex space-x-2">
-                  <Button variant="outline" size="sm" onClick={() => handleEdit(category)}>
-                    <Edit2 className="h-4 w-4" />
-                  </Button>
-                  <Button variant="outline" size="sm" onClick={() => handleDelete(category.id)}>
-                    <Trash2 className="h-4 w-4" />
-                  </Button>
-                </div>
-              </CardHeader>
-            </Card>
-          ))
-        )}
-      </div>
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        <div className="space-y-8">
+          {/* Topics Group */}
+          {topicCategories.length > 0 && (
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <h2 className="text-lg font-semibold text-primary">Topics</h2>
+                <Badge variant="secondary">{topicCategories.length}</Badge>
+              </div>
+              <div className="grid gap-3">
+                {topicCategories.map((category: BlogCategory) => (
+                  <Card key={category.id}>
+                    <CardHeader className="flex flex-row items-center justify-between space-y-0 py-3">
+                      <CardTitle className="text-base font-medium">{category.name}</CardTitle>
+                      <div className="flex space-x-2">
+                        <Button variant="outline" size="sm" onClick={() => handleEdit(category)}>
+                          <Edit2 className="h-4 w-4" />
+                        </Button>
+                        <Button variant="outline" size="sm" onClick={() => handleDelete(category.id)}>
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </CardHeader>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Countries Group */}
+          {countryCategories.length > 0 && (
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <h2 className="text-lg font-semibold text-primary">Countries</h2>
+                <Badge variant="secondary">{countryCategories.length}</Badge>
+              </div>
+              <div className="grid gap-3">
+                {countryCategories.map((category: BlogCategory) => (
+                  <Card key={category.id}>
+                    <CardHeader className="flex flex-row items-center justify-between space-y-0 py-3">
+                      <CardTitle className="text-base font-medium">{category.name}</CardTitle>
+                      <div className="flex space-x-2">
+                        <Button variant="outline" size="sm" onClick={() => handleEdit(category)}>
+                          <Edit2 className="h-4 w-4" />
+                        </Button>
+                        <Button variant="outline" size="sm" onClick={() => handleDelete(category.id)}>
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </CardHeader>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 };
