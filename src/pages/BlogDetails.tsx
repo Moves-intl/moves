@@ -293,11 +293,11 @@ const BlogDetails = () => {
         {/* Hero Section */}
         <div className="relative">
           {blog.featured_image_url && (
-            <div className="relative h-[50vh] md:h-[60vh] overflow-hidden">
+            <div className="relative w-full">
               <img
                 src={blog.featured_image_url}
                 alt={blog.featured_image_alt || blog.title}
-                className="w-full h-full object-cover object-top"
+                className="w-full h-auto max-h-[65vh] object-cover object-center"
               />
               <div className="absolute top-5 left-5 z-50 flex items-center gap-4 ">
                 <Button

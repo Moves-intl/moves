@@ -78,19 +78,16 @@ const FeaturedUniversities = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-primary bg-clip-text  mb-4">
             World-Class Universities
           </h2>
-          <div className="flex justify-between">
-
-            <p className="text-lg text-slate-600 leading-relaxed items-start">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
               Discover exceptional institutions that shape the future of education and innovation
             </p>
-            <div className="text-end">
-              <button
-                onClick={handleViewAllUniversities}
-                className="flex items-center -mt-5 gap-2 px-4 py-2 border border-orange-500 bg-orange-100 text-orange-600 rounded-md font-medium hover:bg-orange-200 transition"
-              >
-                Explore All Universities <ArrowRight className="h-4 w-4" />
-              </button>
-            </div>
+            <button
+              onClick={handleViewAllUniversities}
+              className="flex items-center self-start sm:self-auto shrink-0 gap-2 px-4 py-2 border border-orange-500 bg-orange-100 text-orange-600 rounded-md font-medium hover:bg-orange-200 transition"
+            >
+              Explore All Universities <ArrowRight className="h-4 w-4" />
+            </button>
           </div>
         </div>
         {/* univertisites */}

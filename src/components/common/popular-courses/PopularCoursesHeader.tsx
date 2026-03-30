@@ -17,15 +17,14 @@ const PopularCoursesHeader = () => {
         Popular Courses
       </div>
       
-      <h2 className="text-4xl font-bold text-primary mb-3">
+      <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary mb-3">
         Explore Our Top-Rated Programs
       </h2>
-      <div className="flex justify-between">
-
-      <p className="text-lg text-gray-600 max-w-2xl text-start items-start">
-        Discover our most sought-after courses that are shaping the future of education
-      </p>
-              <PopularCoursesAction onViewAllCourses={handleViewAllCourses} />
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+        <p className="text-base sm:text-lg text-gray-600 max-w-2xl text-start">
+          Discover our most sought-after courses that are shaping the future of education
+        </p>
+        <PopularCoursesAction onViewAllCourses={handleViewAllCourses} />
       </div>
     </div>
   );
