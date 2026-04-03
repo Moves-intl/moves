@@ -10,7 +10,7 @@ interface CounsellingBooking {
   student_email: string;
   student_phone: string;
   preferred_destination?: string;
-  study_level?: string;
+  preferred_start?: string; 
   course_interest?: string;
   current_education_level?: string;
   english_test_score?: string;
@@ -70,19 +70,19 @@ const BookingCard = ({ booking, onUpdateClick, getStatusColor }: BookingCardProp
           {booking.preferred_destination && (
             <p><strong>Destination:</strong> {booking.preferred_destination}</p>
           )}
-          {booking.study_level && (
-            <p><strong>Study Level:</strong> {booking.study_level}</p>
-          )}
+          {booking.preferred_start && (
+  <p><strong>Preferred Start:</strong> {booking.preferred_start}</p>
+)}
           {booking.course_interest && (
             <div className="flex items-center gap-2">
               <BookOpen className="h-4 w-4" />
-              <span><strong>Course Interest:</strong> {booking.course_interest}</span>
+              <span><strong>Consultation Mode:</strong> {booking.course_interest}</span>
             </div>
           )}
           {booking.current_education_level && (
             <div className="flex items-center gap-2">
               <GraduationCap className="h-4 w-4" />
-              <span><strong>Current Education:</strong> {booking.current_education_level}</span>
+              <span><strong>Nearest Branch:</strong> {booking.current_education_level}</span>
             </div>
           )}
           {booking.english_test_score && (
