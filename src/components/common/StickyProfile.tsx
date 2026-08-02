@@ -12,7 +12,7 @@ export default function StickyProfileComponent() {
             {/* Profile Image */}
             <div className="w-[80px] h-[80px] rounded-full overflow-hidden bg-gray-300">
               <img
-                src="/team/Sudan_Bhattarai.png"
+                src="/team/Anjan_Sharma.jpeg"
                 alt="Profile"
                 className="w-full h-full object-cover"
               />
@@ -21,17 +21,17 @@ export default function StickyProfileComponent() {
             {/* Name and supporting text */}
             <div>
               <h2 className="text-sm mb-0 md:text-base font-medium text-black">
-                Sudan Bhattarai
+                Anjan Sharma
               </h2>
               <p className="text-sm mb-0 text-gray-500">Counselor</p>
             </div>
           </div>
 
           {/* Right side - Phone button */}
-          <a href="tel:+9779768991102">
+          <a href="tel:986-2420485">
             <button className="flex items-center space-x-1 md:space-x-2 bg-orange-100 hover:bg-orange-200 text-orange-600 px-4 py-2 rounded-lg transition-colors">
               <Phone size={18} />
-              <span className="font-medium">+977 9768991102</span>
+              <span className="font-medium">986-2420485</span>
             </button>
           </a>
         </div>

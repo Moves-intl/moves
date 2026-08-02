@@ -1,6 +1,32 @@
-import { Search, Filter, Heart, MessageCircle, Rocket, ArrowRight, Sparkles } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { Search, Filter, Heart, MessageCircle, Rocket, ArrowRight, Sparkles, X } from "lucide-react";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 export default function HowToApply() {
+  const [showFeedback, setShowFeedback] = useState(false);
+  const [hasShownFeedback, setHasShownFeedback] = useState(false);
+  const [feedbackLoaded, setFeedbackLoaded] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  // Show the feedback popup once the "How It Works" section scrolls into view
+  useEffect(() => {
+    if (hasShownFeedback || !sectionRef.current) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShowFeedback(true);
+          setHasShownFeedback(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, [hasShownFeedback]);
+
   const steps = [
     {
       id: 1,
@@ -113,7 +139,7 @@ export default function HowToApply() {
   ];
 
   return (
-    <section className="py-20 px-4 md:px-6 lg:px-8 relative overflow-hidden" style={{ backgroundColor: '#f5f5f5' }}>
+    <section ref={sectionRef} className="py-20 px-4 md:px-6 lg:px-8 relative overflow-hidden" style={{ backgroundColor: '#f5f5f5' }}>
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute top-20 left-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
@@ -279,6 +305,49 @@ export default function HowToApply() {
           ))}
         </div>
       </div>
+
+      <Dialog
+        open={showFeedback}
+        onOpenChange={(open) => {
+          if (!open && !feedbackLoaded) return;
+          setShowFeedback(open);
+        }}
+      >
+        <DialogContent className="max-w-2xl h-[80vh] p-0 overflow-hidden [&>button:last-of-type]:hidden">
+          <button
+            onClick={() => feedbackLoaded && setShowFeedback(false)}
+            disabled={!feedbackLoaded}
+            aria-label="Close"
+            className={`absolute top-4 right-4 z-50 w-8 h-8 rounded-full flex items-center justify-center shadow-md transition-colors ${
+              feedbackLoaded
+                ? "bg-white text-red-600 hover:bg-red-50 cursor-pointer"
+                : "bg-white/70 text-red-300 cursor-not-allowed"
+            }`}
+          >
+            <X className="w-4 h-4" />
+          </button>
+          {!feedbackLoaded && (
+            <div className="absolute inset-0 flex items-center justify-center bg-white">
+              <div className="w-10 h-10 border-4 border-gray-200 border-t-orange-500 rounded-full animate-spin"></div>
+            </div>
+          )}
+          <iframe
+            src="https://app.agents360.io/feedback/moves"
+            title="Check In"
+            scrolling="no"
+            onLoad={() => setFeedbackLoaded(true)}
+            style={{
+              width: "100%",
+              height: "100%",
+              border: 0,
+              display: "block",
+              overflow: "hidden",
+              opacity: feedbackLoaded ? 1 : 0,
+              transition: "opacity 0.2s ease",
+            }}
+          />
+        </DialogContent>
+      </Dialog>
     </section>
   );
 }
